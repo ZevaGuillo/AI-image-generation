@@ -7,6 +7,10 @@ module.exports = {
       screens: {
         xs: '480px',
       },
+      colors: {
+        'bgColor': '#212121',
+        "hover":"#333333"
+      },
       fontFamily: {
         inter: ['Inter var', 'sans-serif'],
       },
