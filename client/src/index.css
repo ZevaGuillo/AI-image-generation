@@ -26,3 +26,12 @@ body{
   background-color: #666e75;
   border-radius: 5px;
 }
+
+
+.gradient{
+    @apply  bg-gradient-to-r from-rose-400 to-orange-300
+}
+
+.text-gradient{
+    @apply font-extrabold text-transparent bg-clip-text gradient
+}
