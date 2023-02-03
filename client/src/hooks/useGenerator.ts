@@ -30,7 +30,7 @@ export const useGenerator = () => {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        username: form.prompt,
+                        username: form.username,
                         model: 'stable diffusion',
                         prompt: form.prompt,
                         image: form.image || 'https://d1okzptojspljx.cloudfront.net/generations/cd8f53f5-ebb9-45bc-b8cb-d6be2cc6cfa9-0.png',
