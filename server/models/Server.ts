@@ -2,22 +2,35 @@ import { Application } from "express"
 import express from 'express';
 import cors from 'cors';
 import generateRouter from "../routes/generateRoute";
+import PostRouter from "../routes/postRoute";
+import { dbConnection } from "../database/config";
 
 class Server{
     private app: Application;
     private port: string;
     private paths = {
-        generate: '/generate' 
+        generate: '/generate', 
+        post: '/post'
     }
 
     constructor(){
         this.app = express();
         this.port = process.env.PORT || '8080';
 
+        this.DBConnection()
+
         this.middlewares();
 
         this.routes()
 
+    }
+
+    async DBConnection() {
+        try {
+            await dbConnection()
+        } catch (error) {
+            console.log(error);
+        }
     }
     
     middlewares() {
@@ -27,6 +40,7 @@ class Server{
     
     routes() {
         this.app.use(`/api/v1${this.paths.generate}`, generateRouter)
+        this.app.use(`/api/v1${this.paths.post}`, PostRouter)
     }
 
     listen(){
