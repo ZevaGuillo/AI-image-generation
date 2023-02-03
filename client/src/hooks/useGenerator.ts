@@ -19,6 +19,40 @@ export const useGenerator = () => {
         });
     };
 
+    const createPost = async () => {
+
+        if (form.prompt && form.username) {
+            try {
+
+                const response = await fetch("http://localhost:8080/api/v1/post/create", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        username: form.prompt,
+                        model: 'stable diffusion',
+                        prompt: form.prompt,
+                        image: form.image || 'https://d1okzptojspljx.cloudfront.net/generations/cd8f53f5-ebb9-45bc-b8cb-d6be2cc6cfa9-0.png',
+                    }),
+                });
+                const data = await response.json();
+                console.log(data);
+                
+                
+            }catch (error) {
+                alert(error);
+            } finally {
+                // setLoading(false);
+                // TODO: loading post
+                console.log('se hizo algo')
+            }
+
+        } else {
+            alert("llenar el campo");
+        }
+    }
+
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -57,6 +91,7 @@ export const useGenerator = () => {
         form,
         handleChange,
         handleSubmit,
+        createPost
     };
 };
 

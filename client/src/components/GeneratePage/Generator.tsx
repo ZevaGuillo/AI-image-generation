@@ -1,7 +1,7 @@
 import { useGenerator } from "../../hooks/useGenerator";
 
 const Generator = () => {
-  const { loading, form, handleChange, handleSubmit } = useGenerator();
+  const { loading, form, handleChange, handleSubmit, createPost } = useGenerator();
 
   return (
     <section>
@@ -31,18 +31,19 @@ const Generator = () => {
               />
             <button
               disabled={loading}
-              className="inline-block rounded-full gradient p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75">
+              className="disabled:opacity-25 inline-block rounded-full gradient p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75">
               <span
                 aria-hidden="true"
                 role="img"
-                className="flex justify-center gap-2 rounded-full bg-bgColor px-4 py-2 text-sm font-medium transition  hover:ease-out hover:bg-transparent">
+                className=" flex justify-center gap-2 rounded-full bg-bgColor px-4 py-2 text-sm font-medium transition  hover:ease-out hover:bg-transparent">
                 Generate 😜
               </span>
             </button>
             <button
               type="button"
-              disabled={!!form.image}
-              className="inline-block rounded-full gradient p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75">
+              onClick={createPost}
+              disabled={!form.image}
+              className="disabled:opacity-25 inline-block rounded-full gradient p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75">
               <span
                 aria-hidden="true"
                 role="img"

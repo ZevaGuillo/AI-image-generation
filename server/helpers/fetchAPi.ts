@@ -11,7 +11,7 @@ export const fetchApi = async (prompt) => {
             "width": "512",
             "height": "512",
             "samples": "1",
-            "num_inference_steps": "20",
+            "num_inference_steps": "30",
             "seed": null,
             "guidance_scale": 7.5,
             "safety_checker": "yes",
