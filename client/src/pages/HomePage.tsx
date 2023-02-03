@@ -1,7 +1,11 @@
+import Gallery from "../components/Homepage/Gallery";
 
 
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return <main>
+    <nav>Hero algo</nav>
+    <Gallery/>
+  </main>;
 };
 
 export default HomePage;
