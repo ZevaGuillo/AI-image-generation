@@ -19,14 +19,14 @@ const Generator = () => {
                 name="username"
                 value={form.username}
                 onChange={handleChange}
-                className="w-full rounded-lg bg-hover border-none p-3 text-sm"
+                className="w-full rounded-lg bg-hover border-none p-3"
               />
               <textarea
                 placeholder="Prompt..."
                 name="prompt"
                 value={form.prompt}
                 onChange={handleChange}
-                className="flex-1 w-full rounded-lg bg-hover border-none p-3 text-sm"
+                className="flex-1 w-full rounded-lg bg-hover border-none p-3 text-lg"
                 rows={8}
               />
             <button
@@ -37,6 +37,17 @@ const Generator = () => {
                 role="img"
                 className="flex justify-center gap-2 rounded-full bg-bgColor px-4 py-2 text-sm font-medium transition  hover:ease-out hover:bg-transparent">
                 Generate 😜
+              </span>
+            </button>
+            <button
+              type="button"
+              disabled={!!form.image}
+              className="inline-block rounded-full gradient p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75">
+              <span
+                aria-hidden="true"
+                role="img"
+                className="flex justify-center gap-2 rounded-full bg-bgColor px-4 py-2 text-sm font-medium transition  hover:ease-out hover:bg-transparent">
+                Created post
               </span>
             </button>
           </form>
