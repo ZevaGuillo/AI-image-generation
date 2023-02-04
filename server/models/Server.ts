@@ -4,13 +4,15 @@ import cors from 'cors';
 import generateRouter from "../routes/generateRoute";
 import PostRouter from "../routes/postRoute";
 import { dbConnection } from "../database/config";
+import userRouter from "../routes/userRouter";
 
 class Server{
     private app: Application;
     private port: string;
     private paths = {
         generate: '/generate', 
-        post: '/post'
+        post: '/post',
+        auth: '/auth'
     }
 
     constructor(){
@@ -41,6 +43,7 @@ class Server{
     routes() {
         this.app.use(`/api/v1${this.paths.generate}`, generateRouter)
         this.app.use(`/api/v1${this.paths.post}`, PostRouter)
+        this.app.use(`/api/v1${this.paths.auth}`, userRouter)
     }
 
     listen(){
