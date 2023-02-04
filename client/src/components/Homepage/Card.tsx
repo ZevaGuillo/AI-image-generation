@@ -11,16 +11,7 @@ const Card = ({ post }: CardProps) => {
         alt="Developer"
         src={post.image}
         className=" h-full w-full object-cover rounded-lg opacity-75"
-        // group-hover:opacity-50
       />
-
-      {/* <div className="relative p-8">
-          <div className="absolute left-0 top-0 translate-y-8 transform opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
-            <p className="text-sm text-white">
-                {post.prompt}
-            </p>
-          </div>
-      </div> */}
 
       <div className="p-2 h-16 hover:h-auto transition-all ease-out group w-full absolute bottom-0 rounded-lg bg-bgColor bg-opacity-50 backdrop-blur-xl drop-shadow-xl">
 
