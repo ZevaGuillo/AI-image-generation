@@ -24,7 +24,7 @@ export const useGenerator = () => {
         if (form.prompt && form.username) {
             try {
 
-                const response = await fetch("http://localhost:8080/api/v1/post/create", {
+                const response = await fetch("http://localhost:8000/api/v1/post/create", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -61,7 +61,7 @@ export const useGenerator = () => {
 
             try {
                 //* FETCH
-                const response = await fetch("http://localhost:8080/api/v1/generate", {
+                const response = await fetch("http://localhost:8000/api/v1/generate", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
