@@ -10,11 +10,12 @@ const Gallery = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:8080/api/v1/post");
+      const response = await fetch("http://localhost:8000/api/v1/post");
 
       if (response.ok) {
         const result = await response.json();
-        setPosts(result.posts);
+        let reversePosts = result.posts.reverse() 
+        setPosts(reversePosts);
       }
     } catch (error) {
       alert(error);
@@ -33,7 +34,7 @@ const Gallery = () => {
       {loading ? (
         <h2>loading</h2>
       ) : (
-        <div>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {posts.map((post, index) => (
             <Card
               key={`${post.username}-${index}`}
