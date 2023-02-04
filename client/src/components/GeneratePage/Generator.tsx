@@ -1,13 +1,12 @@
 import { useGenerator } from "../../hooks/useGenerator";
+import CarouselModel from '../Homepage/CarouselModel';
 
 const Generator = () => {
   const { loading, form, handleChange, handleSubmit, createPost } = useGenerator();
 
   return (
     <section>
-      <nav className="px-2 mb-6 py-4 md:px-32 border-y border-hover">
-        config - width | models{" "}
-      </nav>
+      <CarouselModel/>
       <section className="px-2 py-4 md:px-32 ">
         <div className="flex flex-col gap-4 md:gap-8 md:flex-row-reverse md:justify-center">
           <form
