@@ -10,10 +10,13 @@ const UsuarioSchema = new Schema({
         require: true,
         unique: true,
     },
-    password: {
+    profilePic: {
+        type: String,
+    },
+    _id:{
         type: String,
         require: true,
-    }
+    }  
 })
 
 export default model('User', UsuarioSchema)

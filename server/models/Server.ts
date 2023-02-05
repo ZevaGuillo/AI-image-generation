@@ -1,10 +1,15 @@
 import { Application } from "express"
 import express from 'express';
 import cors from 'cors';
+import passport from 'passport'
 import generateRouter from "../routes/generateRoute";
 import PostRouter from "../routes/postRoute";
 import { dbConnection } from "../database/config";
 import userRouter from "../routes/userRouter";
+import morgan from "morgan";
+import helmet from "helmet";
+import session from "express-session";
+import '../helpers/passport'
 
 class Server{
     private app: Application;
@@ -18,7 +23,7 @@ class Server{
     constructor(){
         this.app = express();
         this.port = process.env.PORT || '8000';
-
+  
         this.DBConnection()
 
         this.middlewares();
@@ -36,8 +41,18 @@ class Server{
     }
     
     middlewares() {
+        this.app.use(session({
+            secret: `${process.env.COOKIE_SECRET}`,
+            resave: true,
+            saveUninitialized: true
+        }))
+        this.app.use(passport.initialize());
+        this.app.use(passport.session());
         this.app.use(express.json());
-        this.app.use(cors());
+        this.app.use(express.urlencoded({extended:true}));
+        this.app.use(cors({origin:'http://localhost:5173', credentials: true}));
+        this.app.use(morgan('dev'));
+        this.app.use(helmet());
     }
     
     routes() {
