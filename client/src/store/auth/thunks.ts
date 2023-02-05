@@ -1,18 +1,21 @@
 import { AnyAction } from "@reduxjs/toolkit";
 import { ThunkAction } from "redux-thunk";
 import { RootState } from "../store";
+import {login} from './authSlice';
 
 
-export const startCreatingUserWithEmailPassword = ({email, password, displayName}:any): ThunkAction<void, RootState, unknown, AnyAction> => {
+
+export const startLoginWithGoogle = (): ThunkAction<void, RootState, unknown, AnyAction> => {
     return async (dispatch, getState) => {
+        try {
+            const response = await fetch('http://localhost:8000/api/v1/auth/login/success',{ credentials: 'include'});
+            const data = await response.json();
 
-    }
-}
-
-export const startLoginWithEmailPassword = ({email, password}:any): ThunkAction<void, RootState, unknown, AnyAction> => {
-    return async (dispatch, getState) => {
-
-
+            dispatch( login(data.user) )
+      
+          } catch (error) {
+            console.log(error)
+          }
     }
 }
 

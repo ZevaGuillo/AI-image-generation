@@ -1,13 +1,31 @@
 import React from "react";
-import { Route } from "react-router";
+import { Navigate, Route } from "react-router";
 import { Routes } from "react-router-dom";
 import GeneratePage from "../pages/GeneratePage";
 import HomePage from "../pages/HomePage";
+import { useAppDispatch, useAppSelector } from '../hooks/useRedux';
+import { useEffect } from 'react';
+import { startLoginWithGoogle } from "../store/auth/thunks";
 
 const AppRouter = () => {
+
+  const {status} = useAppSelector(state=> state.auth); 
+  const dispatch = useAppDispatch()
+
+  useEffect(()=>{
+    dispatch(startLoginWithGoogle())
+  },[])
+
   return <Routes>
     <Route path="/" element={<HomePage/>}/>
-    <Route path="/generate" element={<GeneratePage/>}/>
+
+    {status === 'authenticated' && 
+      <Route path="/generate" element={<GeneratePage/>}/>
+    }
+
+    <Route path="/*" element={<Navigate to={'/'}/>}/>
+
+
   </Routes>;
 };
 
