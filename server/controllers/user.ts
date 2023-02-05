@@ -1,4 +1,4 @@
-import bcryptjs from 'bcryptjs'; 
+import bcryptjs from 'bcryptjs';
 import { request, response } from "express";
 import User from "../models/mongo/User";
 
@@ -17,7 +17,6 @@ export const getUser = async (req, res = response) => {
             error
         })
     }
-
 
 }
 
