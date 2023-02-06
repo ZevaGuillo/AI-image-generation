@@ -32,6 +32,10 @@ body{
     @apply  bg-gradient-to-r from-rose-400 to-orange-300
 }
 
+.gradient-google {
+    background: linear-gradient(-120deg, #4285f4, #34a853, #fbbc05, #ea4335);
+}
+
 .text-gradient{
     @apply font-extrabold text-transparent bg-clip-text gradient
 }
