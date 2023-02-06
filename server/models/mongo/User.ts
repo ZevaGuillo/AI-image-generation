@@ -1,7 +1,11 @@
 import { model, Schema } from "mongoose"
 
 const UsuarioSchema = new Schema({
-    username:{
+    username: {
+        type: String,
+        require: true,
+    },
+    slug: {
         type: String,
         require: true,
     },
@@ -13,10 +17,14 @@ const UsuarioSchema = new Schema({
     profilePic: {
         type: String,
     },
-    _id:{
+    _id: {
         type: String,
         require: true,
-    }  
+    },
+    posts: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Post'
+    }]
 })
 
 export default model('User', UsuarioSchema)
