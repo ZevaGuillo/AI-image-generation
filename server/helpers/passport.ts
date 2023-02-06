@@ -2,6 +2,7 @@ import { Strategy as GoogleStrategy } from 'passport-google-oauth20'
 import passport from 'passport'
 import * as dotenv from 'dotenv';
 import User from '../models/mongo/User';
+import { createSlug } from './createSlug';
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ passport.use(
             } else {
                 const newuser = await User.create({
                     username: profile.displayName,
+                    slug: createSlug(profile.displayName),
                     email: profile.emails[0].value,
                     profilePic: profile.photos[0].value,
                     _id: profile.id

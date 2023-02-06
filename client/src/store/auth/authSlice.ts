@@ -4,6 +4,7 @@ const initialState = {
   status: 'checking', // checking, not-authenticated, 'authenticated'
   _id: "",
   username: '',
+  slug: '',
   email: '',
   profilePic: '',
 }
@@ -16,6 +17,7 @@ const authSlice = createSlice({
       state.status = 'authenticated';
       state._id = payload._id
       state.username = payload.username
+      state.slug = payload.slug
       state.email = payload.email
       state.profilePic = payload.profilePic
     },
