@@ -19,9 +19,8 @@ const authSlice = createSlice({
       state.email = payload.email
       state.profilePic = payload.profilePic
     },
-    logout: (state, { payload }) => {
+    logout: (state) => {
       state.status = 'not-authenticated';
-
     },
     checkingCredentials: (state) => {
       state.status = 'checking';
