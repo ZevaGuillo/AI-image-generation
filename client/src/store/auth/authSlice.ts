@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { User } from '../../types/user';
 
-const initialState = {
+const initialState: User = {
   status: 'checking', // checking, not-authenticated, 'authenticated'
   _id: "",
   username: '',
