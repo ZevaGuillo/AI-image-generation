@@ -30,7 +30,7 @@ const UserPage = () => {
 
   useEffect(() => {
     fetchUser();
-  }, []);
+  }, [username]);
 
   if (user?.length === 0) {
     return <Navigate to={"/"} />;
