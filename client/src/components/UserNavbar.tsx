@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useAppSelector } from "../hooks/useRedux";
 
 const UserNavbar = () => {
-  const { profilePic, username } = useAppSelector(state => state.auth);
+  const { profilePic, username , slug} = useAppSelector(state => state.auth);
 
   return (
     <div className="flex items-center justify-end gap-4">
@@ -57,8 +57,8 @@ const UserNavbar = () => {
         aria-hidden="true"
         className="block h-6 w-px rounded-full bg-gray-200"></span>
 
-      <a
-        href="#"
+      <Link
+        to={`/${slug}`}
         className="block shrink-0">
         <span className="sr-only">Profile</span>
         <img
@@ -67,7 +67,7 @@ const UserNavbar = () => {
           referrerPolicy="no-referrer"
           className="h-10 w-10 rounded-full object-cover"
         />
-      </a>
+      </Link>
     </div>
   );
 };

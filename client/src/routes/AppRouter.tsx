@@ -6,6 +6,7 @@ import HomePage from "../pages/HomePage";
 import { useAppDispatch, useAppSelector } from '../hooks/useRedux';
 import { useEffect } from 'react';
 import { startLoginWithGoogle } from "../store/auth/thunks";
+import UserPage from "../pages/UserPage";
 
 const AppRouter = () => {
 
@@ -22,6 +23,9 @@ const AppRouter = () => {
     {status === 'authenticated' && 
       <Route path="/generate" element={<GeneratePage/>}/>
     }
+
+    <Route path="/:username" element={<UserPage/>}/>
+
 
     <Route path="/*" element={<Navigate to={'/'}/>}/>
 
