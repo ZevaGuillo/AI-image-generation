@@ -2,14 +2,15 @@ import { Application } from "express"
 import express from 'express';
 import cors from 'cors';
 import passport from 'passport'
-import generateRouter from "../routes/generateRoute";
-import PostRouter from "../routes/postRoute";
+import generateRouter from "../routes/generateRouter";
+import postRouter from "../routes/postRouter";
 import { dbConnection } from "../database/config";
-import userRouter from "../routes/userRouter";
+import authRouter from "../routes/authRouter";
 import morgan from "morgan";
 import helmet from "helmet";
 import session from "express-session";
 import '../helpers/passport'
+import userRouter from "../routes/userRoute";
 
 class Server{
     private app: Application;
@@ -17,7 +18,8 @@ class Server{
     private paths = {
         generate: '/generate', 
         post: '/post',
-        auth: '/auth'
+        auth: '/auth',
+        user: '/user',
     }
 
     constructor(){
@@ -57,8 +59,9 @@ class Server{
     
     routes() {
         this.app.use(`/api/v1${this.paths.generate}`, generateRouter)
-        this.app.use(`/api/v1${this.paths.post}`, PostRouter)
-        this.app.use(`/api/v1${this.paths.auth}`, userRouter)
+        this.app.use(`/api/v1${this.paths.post}`, postRouter)
+        this.app.use(`/api/v1${this.paths.auth}`, authRouter)
+        this.app.use(`/api/v1${this.paths.user}`, userRouter)
     }
 
     listen(){
