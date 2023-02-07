@@ -37,7 +37,7 @@ const Gallery = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {posts.map((post, index) => (
             <Card
-              key={`${post.username}-${index}`}
+              key={`${post.userid}-${index}`}
               post={post}
             />
           ))}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from 'react';
 import { Model } from "../../types/model";
 import { modelList } from "../../utils/models";
 
@@ -24,16 +24,31 @@ const responsive = {
   },
 };
 
-const CarouselModel = () => {
-  const [models, setModels] = useState<Model[]>(modelList);
+type CarouselModelProps = {
+  handleModel: (model_id:string)=>void
+  removerModel:(model_id: string)=>void
+  models: Model[];
+}
+
+const CarouselModel = ({models,handleModel, removerModel}:CarouselModelProps) => {
+
 
   return (
     <section className="px-2 mb-6 md:px-20 border-y border-hover py-4">
-
-      <Carousel responsive={responsive} >
+      <Carousel responsive={responsive}>
         {models.map((model, index) => (
-          <div key={index} className="flex  p-2 rounded-xl items-center gap-4 mr-4 hover:bg-hover transition  hover:ease-out">
-            <img src={model.image_url} alt={model.mode_id} className="w-[60px] h-[60px] object-cover rounded-xl" />
+          <div
+            key={index}
+            onClick={() => handleModel(model.mode_id)}
+            onDoubleClick={()=>removerModel(model.mode_id)}
+            className={`flex p-2 rounded-xl items-center gap-4 mr-4 hover:bg-neutral-900 transition  hover:ease-out ${
+              model.active && "bg-hover"
+            }`}>
+            <img
+              src={model.image_url}
+              alt={model.mode_id}
+              className="w-[60px] h-[60px] object-cover rounded-xl"
+            />
             <h3>{model.name}</h3>
           </div>
         ))}

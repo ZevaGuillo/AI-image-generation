@@ -20,9 +20,9 @@ const AppRouter = () => {
   return <Routes>
     <Route path="/" element={<HomePage/>}/>
 
-    {status === 'authenticated' && 
-      <Route path="/generate" element={<GeneratePage/>}/>
-    }
+    {/* {status === 'authenticated' && 
+    } */}
+    <Route path="/generate" element={<GeneratePage/>}/>
 
     <Route path="/:username" element={<UserPage/>}/>
 

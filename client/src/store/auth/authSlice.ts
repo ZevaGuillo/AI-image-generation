@@ -24,6 +24,11 @@ const authSlice = createSlice({
     },
     logout: (state) => {
       state.status = 'not-authenticated';
+      state._id = ''
+      state.username = ''
+      state.slug = ''
+      state.email = ''
+      state.profilePic = ''
     },
     checkingCredentials: (state) => {
       state.status = 'checking';

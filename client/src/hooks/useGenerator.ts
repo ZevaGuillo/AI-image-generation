@@ -1,16 +1,52 @@
 import { useState } from "react";
+import { Model } from "../types/model";
 import { Post } from "../types/post";
+import { modelList } from "../utils/models";
+import { useAppSelector } from './useRedux';
 
 export const useGenerator = () => {
+    const { _id } = useAppSelector(state => state.auth)
 
 
+    const [models, setModels] = useState<Model[]>(modelList);
     const [loading, setLoading] = useState(false);
 
     const [form, setForm] = useState<Post>({
-        username: "",
+        userid: _id,
         prompt: "",
+        negative_prompt: "",
         image: "",
+        model: "Stable Diffusion 2.1",
     });
+
+    const handleModel = (model_id: string) => {
+        setModels(models.map(model => {
+            if (model.mode_id === model_id) {
+                model.active = true;
+            } else {
+                model.active = false;
+            }
+            return model;
+        }))
+
+        setForm({
+            ...form,
+            model: model_id,
+        });
+    };
+
+    const removerModel = (model_id: string) => {
+        setModels(models.map(model => {
+            if (model.mode_id === model_id) {
+                model.active = false;
+            }
+            return model;
+        }));
+        setForm({
+            ...form,
+            model: '',
+        });
+    }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setForm({
@@ -21,7 +57,7 @@ export const useGenerator = () => {
 
     const createPost = async () => {
 
-        if (form.prompt && form.username) {
+        if (form.prompt) {
             try {
 
                 const response = await fetch("http://localhost:8000/api/v1/post/create", {
@@ -30,7 +66,7 @@ export const useGenerator = () => {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        username: form.username,
+                        username: form.userid,
                         model: 'stable diffusion',
                         prompt: form.prompt,
                         image: form.image || 'https://d1okzptojspljx.cloudfront.net/generations/cd8f53f5-ebb9-45bc-b8cb-d6be2cc6cfa9-0.png',
@@ -38,14 +74,13 @@ export const useGenerator = () => {
                 });
                 const data = await response.json();
                 console.log(data);
-                
-                
-            }catch (error) {
+
+
+            } catch (error) {
                 alert(error);
             } finally {
                 // setLoading(false);
                 // TODO: loading post
-                console.log('se hizo algo')
             }
 
         } else {
@@ -56,7 +91,7 @@ export const useGenerator = () => {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        if (form.prompt && form.username) {
+        if (form.prompt) {
             setLoading(true);
 
             try {
@@ -68,10 +103,16 @@ export const useGenerator = () => {
                     },
                     body: JSON.stringify({
                         prompt: form.prompt,
+                        negative_prompt: form.negative_prompt,
+                        model: form.model,
                     }),
                 });
                 const data = await response.json();
 
+                if(data.msg){
+                    throw new Error('Fuera de servicio')
+                }
+                
                 setForm({
                     ...form,
                     image: data.image,
@@ -89,9 +130,12 @@ export const useGenerator = () => {
     return {
         loading,
         form,
+        models,
         handleChange,
         handleSubmit,
-        createPost
+        createPost,
+        handleModel,
+        removerModel
     };
 };
 

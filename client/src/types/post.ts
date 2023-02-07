@@ -1,6 +1,7 @@
 export interface Post{
-    username: string,
+    userid: string,
     prompt: string,
+    negative_prompt: string,
     image: string,
-    model?: string
+    model: string
 }

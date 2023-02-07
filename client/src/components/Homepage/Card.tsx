@@ -19,7 +19,7 @@ const Card = ({ post }: CardProps) => {
           {post.model}
         </p>
 
-        <p className="text-2xl font-bold text-white">{post.username}</p>
+        <p className="text-2xl font-bold text-white">{post.userid}</p>
 
           <div className=" max-h-16 overflow-hidden transform opacity-0 transition-all ease-out group-hover:opacity-100">
             <p className="text-sm text-white truncate ">

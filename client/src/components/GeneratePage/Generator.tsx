@@ -1,33 +1,45 @@
 import { useGenerator } from "../../hooks/useGenerator";
-import CarouselModel from '../Homepage/CarouselModel';
+import CarouselModel from "../Homepage/CarouselModel";
 
 const Generator = () => {
-  const { loading, form, handleChange, handleSubmit, createPost } = useGenerator();
+  const {
+    loading,
+    form,
+    models,
+    handleChange,
+    handleSubmit,
+    createPost,
+    handleModel,
+    removerModel,
+  } = useGenerator();
 
   return (
     <section>
-      <CarouselModel/>
+      <CarouselModel
+        models={models}
+        handleModel={handleModel}
+        removerModel={removerModel}
+      />
       <section className="px-2 py-4 md:px-32 ">
         <div className="flex flex-col gap-4 md:gap-8 md:flex-row-reverse md:justify-center">
           <form
             className="flex-1 flex flex-col justify-between gap-4"
             onSubmit={handleSubmit}>
-              <input
-                type="text"
-                placeholder="Username"
-                name="username"
-                value={form.username}
-                onChange={handleChange}
-                className="w-full rounded-lg bg-hover border-none p-3"
-              />
-              <textarea
-                placeholder="Prompt..."
-                name="prompt"
-                value={form.prompt}
-                onChange={handleChange}
-                className="flex-1 w-full rounded-lg bg-hover border-none p-3 text-lg"
-                rows={8}
-              />
+            <textarea
+              placeholder="Negative prompt"
+              name="negative_prompt"
+              value={form.negative_prompt}
+              onChange={handleChange}
+              className="flex-1 w-full rounded-lg bg-hover border-none p-3"
+            />
+            <textarea
+              placeholder="Prompt..."
+              name="prompt"
+              value={form.prompt}
+              onChange={handleChange}
+              className="flex-initial w-full rounded-lg bg-hover border-none p-3 text-lg"
+              rows={8}
+            />
             <button
               disabled={loading}
               className="disabled:opacity-25 inline-block rounded-full gradient p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75">
@@ -53,7 +65,9 @@ const Generator = () => {
           </form>
           <section className="md:flex-1">
             {loading ? (
-              <h1 className="min-h-[512px] bg-neutral-800 rounded-lg">loading...</h1>
+              <h1 className="min-h-[512px] bg-neutral-800 rounded-lg">
+                loading...
+              </h1>
             ) : (
               <img
                 className="max-h-[512px] w-full object-cover rounded-lg"
