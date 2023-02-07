@@ -3,39 +3,53 @@
 @tailwind utilities;
 
 * {
-    font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
-@media screen and (min-width: 480px) {
-    .card:nth-child(7n + 1) {
-        grid-column: auto/span 2;
-        grid-row: auto/span 2;
-    }
+:root {
+  --white-bg: #f2f3f7;
+  --white: #ffffff;
+  --dark: #575757;
+  --thumb-bg: #5c5c6665;
+}
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--thumb-bg);
+  border-radius: var(--radius);
+}
+::-webkit-scrollbar-thumb:active,
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dark);
+}
+::-webkit-scrollbar-track {
+  background: #80808014;
 }
 
-body{
-    background-color: #212121;
-    color:#f2f2f2
+body {
+  background-color: #212121;
+  color: #f2f2f2;
 }
 
 .prompt::-webkit-scrollbar {
-    width: 5px;
+  width: 5px;
 }
- 
+
 .prompt::-webkit-scrollbar-thumb {
   background-color: #666e75;
   border-radius: 5px;
 }
 
-
-.gradient{
-    @apply  bg-gradient-to-r from-rose-400 to-orange-300
+.gradient {
+  @apply bg-gradient-to-r from-rose-400 to-orange-300;
 }
 
 .gradient-google {
-    background: linear-gradient(-120deg, #4285f4, #34a853, #fbbc05, #ea4335);
+  background: linear-gradient(-120deg, #4285f4, #34a853, #fbbc05, #ea4335);
 }
 
-.text-gradient{
-    @apply font-extrabold text-transparent bg-clip-text gradient
+.text-gradient {
+  @apply font-extrabold text-transparent bg-clip-text gradient;
 }

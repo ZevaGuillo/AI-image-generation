@@ -74,7 +74,7 @@ const UserPage = () => {
           </div>
         </div>
         <div className="bg-bgColor flex-1">
-          <Gallery loading={loading} posts={user[0].posts}/>
+          <Gallery posts={user[0].posts.reverse()}/>
         </div>
       </div>
     </div>

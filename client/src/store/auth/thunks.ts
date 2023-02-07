@@ -11,7 +11,7 @@ export const startLoginWithGoogle = (): ThunkAction<void, RootState, unknown, An
       dispatch(checkingCredentials())
       const response = await fetch('http://localhost:8000/api/v1/auth/login/success', { credentials: 'include' });
       const data = await response.json();
-
+      
       dispatch(login(data.user))
 
     } catch (error) {

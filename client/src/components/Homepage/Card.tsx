@@ -10,6 +10,7 @@ const Card = ({ post }: CardProps) => {
       <img
         alt="Developer"
         src={post.image}
+        loading="lazy"
         className=" h-full w-full object-cover rounded-lg opacity-75"
       />
 
