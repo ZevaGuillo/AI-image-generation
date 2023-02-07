@@ -8,7 +8,7 @@ export const fetchApi = async (prompt: string, negative_prompt: string, model: s
         "height": "512",
         "samples": "1",
         "num_inference_steps": 60,
-        "safety_checker": "yes",
+        "safety_checker": "not",
         "seed": 2029243644,
         "guidance_scale": 13,
         "webhook": null,
@@ -38,7 +38,7 @@ export const fetchApiWithoutModel = async (prompt: string, negative_prompt: stri
         "num_inference_steps": 60,
         "seed": 2029243644,
         "guidance_scale": 13,
-        "safety_checker": "yes",
+        "safety_checker": "not",
         "webhook": null,
         "track_id": null
     }

@@ -17,7 +17,7 @@ export const useGenerator = () => {
         prompt: "",
         negative_prompt: "",
         image: "",
-        model: "Stable Diffusion 2.1",
+        model: "",
     });
 
     const handleModel = (model_id: string) => {
@@ -68,7 +68,7 @@ export const useGenerator = () => {
                     },
                     body: JSON.stringify({
                         userid: form.userid,
-                        model: 'stable diffusion',
+                        model: form.model,
                         prompt: form.prompt,
                         negative_prompt: form.negative_prompt,
                         image: form.image || 'https://d1okzptojspljx.cloudfront.net/generations/cd8f53f5-ebb9-45bc-b8cb-d6be2cc6cfa9-0.png',

@@ -1,16 +1,29 @@
 import { Model } from "../types/model";
 
 export const modelList: Model[] = [
+    
+    {
+        name: 'Dream Shaper',
+        mode_id: 'dream-shaper-8797',
+        image_url: 'https://d1okzptojspljx.cloudfront.net/generations/9782515001675014614.png',
+        active: false
+    },
+    {
+        name: 'Redshift Diffusion',
+        mode_id: 'redshift-diffusion',
+        image_url: 'https://d1okzptojspljx.cloudfront.net/generations/12363803511669563372.png',
+        active: false
+    },
+    {
+        name: 'Arcane Diffusion',
+        mode_id: 'arcane-diffusion',
+        image_url: 'https://d1okzptojspljx.cloudfront.net/generations/1493213501669561761.png',
+        active: false
+    },
     {
         name: 'Stable Diffusion 2.1',
         mode_id: 'stable-diffu-5089',
         image_url: 'https://d1okzptojspljx.cloudfront.net/generations/1829088371675101187.png',
-        active: true
-    },
-    {
-        name: 'Samdoesarts Ultmerge',
-        mode_id: 'samdoesarts-ultmerge',
-        image_url: 'https://d1okzptojspljx.cloudfront.net/generations/11794681491675313034.png',
         active: false
     },
     {
@@ -20,15 +33,21 @@ export const modelList: Model[] = [
         active: false
     },
     {
-        name: 'Elldreth Vivid Mix',
-        mode_id: 'elldreths-vi',
-        image_url: 'https://d1okzptojspljx.cloudfront.net/generations/5642196911675175414.png',
+        name: 'Vintedois',
+        mode_id: 'vintedois-diffusion',
+        image_url: 'https://stablediffusionapi.com/storage/generations/vintedois.png',
         active: false
     },
     {
-        name: 'T-shirt print designs',
-        mode_id: 't-shirt-prin',
-        image_url: 'https://d1okzptojspljx.cloudfront.net/generations/2092599771675173103.png',
+        name: 'Deliberate',
+        mode_id: 'deliberate',
+        image_url: 'https://d1okzptojspljx.cloudfront.net/generations/3577020801675158232.png',
+        active: false
+    },
+    {
+        name: 'Elldreth Vivid Mix',
+        mode_id: 'elldreths-vi',
+        image_url: 'https://d1okzptojspljx.cloudfront.net/generations/5642196911675175414.png',
         active: false
     },
     {
@@ -37,11 +56,10 @@ export const modelList: Model[] = [
         image_url: 'https://d1okzptojspljx.cloudfront.net/generations/593190021675281138.png',
         active: false
     },
-
     {
-        name: 'Analog Diffusion',
-        mode_id: 'analog-diffusion',
-        image_url: 'https://huggingface.co/wavymulder/Analog-Diffusion/resolve/main/images/page1.jpg',
+        name: 'OpenJourney V2',
+        mode_id: 'midjourney-v2',
+        image_url: 'https://stablediffusionapi.com//storage/generations/out-0.png',
         active: false
     },
     {
@@ -57,77 +75,19 @@ export const modelList: Model[] = [
         active: false
     },
     {
-        name: 'Dream Shaper',
-        mode_id: 'dream-shaper-8797',
-        image_url: 'https://d1okzptojspljx.cloudfront.net/generations/9782515001675014614.png',
-        active: false
-    },
-    {
         name: 'redream',
         mode_id: 'redream',
         image_url: 'https://d1okzptojspljx.cloudfront.net/generations/21177596551674938226.png',
         active: false
     },
-    {
-        name: 'OpenJourney V2',
-        mode_id: 'midjourney-v2',
-        image_url: 'https://stablediffusionapi.com//storage/generations/out-0.png',
-        active: false
-    },
-    {
-        name: 'Disco Diffusion',
-        mode_id: 'disco-diffusion',
-        image_url: 'https://stablediffusionapi.com/storage/generations/disco.jpeg',
-        active: false
-    },
-    {
-        name: 'Double Exposure',
-        mode_id: 'exposure-diffusion',
-        image_url: 'https://stablediffusionapi.com//storage/generations/exposure.jpg',
-        active: false
-    },
-    {
-        name: 'Firewatch Diffusion',
-        mode_id: 'Firewatch Diffusion',
-        image_url: 'https://stablediffusionapi.com//storage/generations/firewatch.png',
-        active: false
-    },
-    {
-        name: 'Linkedin Photoshoot',
-        mode_id: 'linkedin-diffusion',
-        image_url: 'https://stablediffusionapi.com//storage/generations/linkedin.png',
-        active: false
-    },
-    {
-        name: 'IconsMI',
-        mode_id: 'icons-diffusion',
-        image_url: 'https://stablediffusionapi.com//storage/generations/logo.png',
-        active: false
-    },
+
     {
         name: 'Low Poly World',
         mode_id: 'lowpoly-diffusion',
         image_url: 'https://stablediffusionapi.com//storage/generations/lowpoly.png',
         active: false
     },
-    {
-        name: 'Vintedois',
-        mode_id: 'vintedois-diffusion',
-        image_url: 'https://stablediffusionapi.com/storage/generations/vintedois.png',
-        active: false
-    },
-    {
-        name: 'Woolitize',
-        mode_id: 'woolitize-diffusion',
-        image_url: 'https://stablediffusionapi.com/storage/generations/wool.jpg',
-        active: false
-    },
-    {
-        name: 'Wavyfusion',
-        mode_id: 'wavy-diffusion',
-        image_url: 'https://huggingface.co/wavymulder/wavyfusion/resolve/main/images/page1.jpg',
-        active: false
-    },
+
     {
         name: 'F222',
         mode_id: 'f222-diffusion',
@@ -147,33 +107,16 @@ export const modelList: Model[] = [
         active: false
     },
     {
-        name: 'Jaks Creepy Critter Pack',
-        mode_id: 'food-crit',
-        image_url: 'https://huggingface.co/plasmo/food-crit/resolve/main/concept_images/spag.jpg',
-        active: false
-    },
-    {
         name: 'Robo Diffusion',
         mode_id: 'robo-diffusion',
         image_url: 'https://d1okzptojspljx.cloudfront.net/generations/17449677621669563875.png',
         active: false
     },
+
     {
-        name: 'Redshift Diffusion',
-        mode_id: 'redshift-diffusion',
-        image_url: 'https://d1okzptojspljx.cloudfront.net/generations/12363803511669563372.png',
-        active: false
-    },
-    {
-        name: 'Arcane Diffusion',
-        mode_id: 'arcane-diffusion',
-        image_url: 'https://d1okzptojspljx.cloudfront.net/generations/1493213501669561761.png',
-        active: false
-    },
-    {
-        name: 'Wifu Diffusion',
-        mode_id: 'wifu-diffusion',
-        image_url: 'https://d1okzptojspljx.cloudfront.net/generations/21468819471669474933.png',
+        name: 'GTA5 Artwork Diffusion',
+        mode_id: 'gta5-artwork-diffusi',
+        image_url: 'https://d1okzptojspljx.cloudfront.net/generations/20313028851675529498.png',
         active: false
     },
     {
