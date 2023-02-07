@@ -4,6 +4,7 @@ import Gallery from "../components/Homepage/Gallery";
 import useInfiniteScroll from "../hooks/useInfiniteScroll";
 import { Post } from "../types/post";
 import { modelList } from "../utils/models";
+import Landing from '../components/Homepage/Landing';
 
 const HomePage = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -43,7 +44,7 @@ const HomePage = () => {
 
   return (
     <main className="">
-      <nav>Hero algo</nav>
+      <Landing/>
       <CarouselModel
         models={modelList}
         handleModel={() => {}}
