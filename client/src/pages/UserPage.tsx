@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Navigate } from "react-router";
 import { User } from "../types/user";
+import Gallery from "../components/Homepage/Gallery";
 
 const UserPage = () => {
   const { username } = useParams();
@@ -72,7 +73,9 @@ const UserPage = () => {
             </div>
           </div>
         </div>
-        <div className="bg-bgColor flex-1">f</div>
+        <div className="bg-bgColor flex-1">
+          <Gallery loading={loading} posts={user[0].posts}/>
+        </div>
       </div>
     </div>
   );

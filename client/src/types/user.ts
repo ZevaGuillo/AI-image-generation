@@ -1,3 +1,5 @@
+import { Post } from "./post"
+
 export interface User {
     status: "checking" | "not-authenticated" | 'authenticated'
     _id: string,
@@ -5,4 +7,5 @@ export interface User {
     slug: string,
     email: string,
     profilePic: string,
+    posts: Post[]
 }

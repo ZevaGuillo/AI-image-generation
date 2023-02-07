@@ -2,31 +2,13 @@ import { useEffect, useState } from "react";
 import { Post } from "../../types/post";
 import Card from "./Card";
 
-const Gallery = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [loading, setLoading] = useState(false);
+type GalleryProps = {
+  loading: boolean,
+  posts: Post[]
+}
 
-  const fetchPosts = async () => {
-    setLoading(true);
+const Gallery = ({loading, posts}:GalleryProps) => {
 
-    try {
-      const response = await fetch("http://localhost:8000/api/v1/post");
-
-      if (response.ok) {
-        const result = await response.json();
-        let reversePosts = result.posts.reverse() 
-        setPosts(reversePosts);
-      }
-    } catch (error) {
-      alert(error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchPosts();
-  }, []);
 
   return (
     <section className="px-2 md:px-32 ">
