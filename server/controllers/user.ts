@@ -7,7 +7,7 @@ export const getUser = async (req: Request, res: Response) => {
 
     try {
 
-        const user = await User.find({slug})
+        const user = await User.find({slug}).populate('posts')
 
         res.json({
             user

@@ -43,7 +43,7 @@ export const generateImage = async (req: Request, res: Response) => {
                 return res.status(200).json({
                     'image': data.output[0]
                 })
-            }, 30000);
+            }, 60000);
 
             
 

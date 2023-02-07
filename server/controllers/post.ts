@@ -1,12 +1,20 @@
 import { Request, Response } from "express"
+import mongoose from "mongoose";
 import Post from "../models/mongo/Post";
+import User from "../models/mongo/User";
 
-export const getPosts =async (req: Request, res: Response) => {
-    const {limit = 10, since = 0} = req.query;
+const ObjectId = mongoose.Types.ObjectId;
+
+export const getPosts = async (req: Request, res: Response) => {
+    const { limit = 10, since = 0 } = req.query;
 
     const posts = await Post.find()
         .skip(Number(since))
         .limit(Number(limit))
+        .populate('user')
+
+    console.log(posts);
+    
 
     res.json({
         posts
@@ -15,15 +23,29 @@ export const getPosts =async (req: Request, res: Response) => {
 
 export const createPost = async (req: Request, res: Response) => {
 
-    const { prompt, username, image, model } = req.body;
+    const { prompt, userid, image, model } = req.body;
+
 
     try {
+        const user = await User.findById(userid);
 
-        const newPost = { username, model, prompt ,image }
+        console.log(user._id,'ffffffffffffffffffffffffffffffffffffff');
+        
 
-        const postDB = new Post(newPost);
+        const postDB = new Post({
+            model,
+            prompt,
+            image,
+            user: user._id
+        });
+        console.log(postDB,'ffffffffffffffffffffffffffffffffffffff');
+
 
         await postDB.save();
+
+        user.posts.push(postDB._id);
+
+        await user.save();
 
         return res.status(201).json({
             status: 'ok',

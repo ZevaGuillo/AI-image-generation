@@ -40,6 +40,8 @@ const UserPage = () => {
     return <></>;
   }
 
+  console.log(user)
+
   return (
     // <div className="flex items-center justify-center min-h-screen from-gray-700 via-gray-800 to-gray-900 bg-gradient-to-br">
     <div

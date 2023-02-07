@@ -3,10 +3,11 @@ import { Model } from "../types/model";
 import { Post } from "../types/post";
 import { modelList } from "../utils/models";
 import { useAppSelector } from './useRedux';
+import { useNavigate } from 'react-router';
 
 export const useGenerator = () => {
     const { _id } = useAppSelector(state => state.auth)
-
+    const navigate = useNavigate();
 
     const [models, setModels] = useState<Model[]>(modelList);
     const [loading, setLoading] = useState(false);
@@ -66,14 +67,16 @@ export const useGenerator = () => {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        username: form.userid,
+                        userid: form.userid,
                         model: 'stable diffusion',
                         prompt: form.prompt,
                         image: form.image || 'https://d1okzptojspljx.cloudfront.net/generations/cd8f53f5-ebb9-45bc-b8cb-d6be2cc6cfa9-0.png',
                     }),
                 });
                 const data = await response.json();
-                console.log(data);
+                if(data.status === 'ok'){
+                    navigate('/')
+                }
 
 
             } catch (error) {
@@ -109,10 +112,10 @@ export const useGenerator = () => {
                 });
                 const data = await response.json();
 
-                if(data.msg){
+                if (data.msg) {
                     throw new Error('Fuera de servicio')
                 }
-                
+
                 setForm({
                     ...form,
                     image: data.image,
