@@ -14,7 +14,6 @@ export const fetchApi = async (prompt: string, negative_prompt: string, model: s
         "webhook": null,
         "track_id": null
     }
-    console.log(JSON.stringify(gen));
     
     const response = await fetch('https://stablediffusionapi.com/api/v3/dreambooth', {
         method: 'POST',
@@ -42,7 +41,6 @@ export const fetchApiWithoutModel = async (prompt: string, negative_prompt: stri
         "webhook": null,
         "track_id": null
     }
-    console.log(JSON.stringify(gen));
     
     const response = await fetch('https://stablediffusionapi.com/api/v3/text2img', {
         method: 'POST',

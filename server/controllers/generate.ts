@@ -4,9 +4,6 @@ import { fetchApi, fetchApiWithoutModel } from "../helpers/fetchAPi";
 export const generateImage = async (req: Request, res: Response) => {
     const { prompt, negative_prompt, model } = req.body;
 
-    console.log(model);
-    
-
     try {
         let data;
         if(model===''){
@@ -17,11 +14,10 @@ export const generateImage = async (req: Request, res: Response) => {
         }
 
         console.log(data);
-        
 
-        if( data.message === 'Server Error'){
+        if( data.message === 'Server Error' || data.status === 'failed'){
             return res.status(500).json({
-                'msg': 'Intente sin seleccionar un modelo'
+                'message': 'Try without selecting a model'
             })
         }
 
@@ -49,7 +45,7 @@ export const generateImage = async (req: Request, res: Response) => {
 
         }else if(data.status === 'error'){
             return res.status(500).json({
-                'msg': 'Fuera de servicio'
+                'message': 'Fuera de servicio'
             })
         }else{
             return res.status(200).json({
