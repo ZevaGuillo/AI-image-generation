@@ -7,7 +7,7 @@ type GalleryProps = {
 const Gallery = ({ posts }: GalleryProps) => {
   return (
     <section className="px-2 md:px-32">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {posts.map((post, index) => (
           <Card
             key={`${post.userid}-${index}`}

@@ -54,7 +54,7 @@ const HomePage = () => {
         posts={posts}
       />
       <div
-        className="min-h-[100px]"
+        className="min-h-[100px] m-4"
         ref={loadMoreRef}>
         {loading && "Loading"}
       </div>

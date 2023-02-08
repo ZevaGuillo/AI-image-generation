@@ -69,12 +69,12 @@ const UserPage = () => {
           </div>
           <div className="pt-6 mx-6 mt-6 text-center border-t border-gray-200 dark:border-gray-700/50">
             <div className="flex flex-wrap justify-center ">
-              <div className="w-full px-6">fdfdf</div>
+              <div className="w-full px-6">Posts: {user[0].posts.length}</div>
             </div>
           </div>
         </div>
-        <div className="bg-bgColor flex-1">
-          <Gallery posts={user[0].posts.reverse()}/>
+        <div className="bg-bgColor flex-1 pt-8">
+          <Gallery posts={user[0].posts.reverse().map(post => ({...post,user:{...user[0]}})) }/>
         </div>
       </div>
     </div>

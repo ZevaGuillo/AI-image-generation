@@ -58,9 +58,9 @@ export const useGenerator = () => {
 
     const createPost = async () => {
 
-        if (form.prompt) {
+        if (form.prompt && form.prompt.length > 5 ) {
             try {
-
+                setLoading(true);
                 const response = await fetch("http://localhost:8000/api/v1/post/create", {
                     method: "POST",
                     headers: {
@@ -83,8 +83,7 @@ export const useGenerator = () => {
             } catch (error) {
                 alert(error);
             } finally {
-                // setLoading(false);
-                // TODO: loading post
+                setLoading(false);
             }
 
         } else {
@@ -95,10 +94,9 @@ export const useGenerator = () => {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        if (form.prompt) {
-            setLoading(true);
-
+        if (form.prompt && form.prompt.length > 5) {
             try {
+                setLoading(true);
                 //* FETCH
                 const response = await fetch("http://localhost:8000/api/v1/generate", {
                     method: "POST",

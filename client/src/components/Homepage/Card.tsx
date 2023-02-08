@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Post } from "../../types/post";
 
 type CardProps = {
@@ -6,28 +7,39 @@ type CardProps = {
 
 const Card = ({ post }: CardProps) => {
   return (
-    <div className="overflow-hidden w-full md:h-72 lg:h-80 row-span-2 rounded-lg relative block bg-black">
+    <div className=" block rounded-lg bg-hover overflow-hidden">
       <img
         alt="Developer"
         src={post.image}
         loading="lazy"
-        className=" h-full w-full object-cover rounded-lg opacity-75"
+        className="aspect-square w-full object-cover rounded-lg scale-95 transition-all group-hover:ease-in-out"
       />
 
-      <div className="p-2 h-16 hover:h-auto transition-all ease-out group w-full absolute bottom-0 rounded-lg bg-bgColor bg-opacity-50 backdrop-blur-xl drop-shadow-xl">
-
-        <p className="text-sm font-medium uppercase tracking-widest text-pink-500">
-          {post.model}
-        </p>
-
-        <p className="text-2xl font-bold text-white">{post.userid}</p>
-
-          <div className=" max-h-16 overflow-hidden transform opacity-0 transition-all ease-out group-hover:opacity-100">
-            <p className="text-sm text-white truncate ">
-                {post.prompt}
-            </p>
+      <div className="p-2 flex justify-between gap-1 text-sm ">
+        <div>
+          <div className="flex gap-2 flex-col">
+            <Link to={`/${post.user?.slug}`} className="group flex-1 flex items-center gap-2">
+              <img
+                alt={post.user?.username}
+                src={post.user?.profilePic}
+                referrerPolicy="no-referrer"
+                className="h-7 w-7 rounded-full object-cover"
+              />
+              <h3 className="text-slate-100 group-hover:text-slate-300 group-hover:underline-offset-4">
+                {post.user?.username}
+              </h3>
+            </Link>
+            {post.model && (
+              <p className=" bg-violet-500 w-fit py-1 px-3 rounded-xl text-gray-100 text-xs text-center">
+                {post.model}
+              </p>
+            )}
           </div>
 
+          <p className="mt-1.5 max-h-[50px] overflow-ellipsis overflow-hidden  max-w-[45ch] text-xs text-gray-100">
+            {post.prompt}
+          </p>
+        </div>
       </div>
     </div>
   );
