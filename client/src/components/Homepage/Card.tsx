@@ -3,19 +3,20 @@ import { Post } from "../../types/post";
 
 type CardProps = {
   post: Post;
+  className?: string; 
 };
 
-const Card = ({ post }: CardProps) => {
+const Card = ({ post, className }: CardProps) => {
   return (
-    <div className=" block rounded-lg bg-hover overflow-hidden">
+    <div className={` flex flex-col rounded-lg bg-hover overflow-hidden ${className}`}>
       <img
         alt="Developer"
         src={post.image}
         loading="lazy"
-        className="aspect-square w-full object-cover rounded-lg scale-95 transition-all group-hover:ease-in-out"
+        className="flex-1 w-full object-cover rounded-lg scale-95 transition-all group-hover:ease-in-out"
       />
 
-      <div className="p-2 flex justify-between gap-1 text-sm ">
+      <div className="p-2 min-h-[130px] flex justify-between gap-1 text-sm ">
         <div>
           <div className="flex gap-2 flex-col">
             <Link to={`/${post.user?.slug}`} className="group flex-1 flex items-center gap-2">
@@ -36,7 +37,7 @@ const Card = ({ post }: CardProps) => {
             )}
           </div>
 
-          <p className="mt-1.5 max-h-[50px] overflow-ellipsis overflow-hidden  max-w-[45ch] text-xs text-gray-100">
+          <p className="mt-1.5 max-h-[50px] overflow-ellipsis overflow-hidden text-xs text-gray-100">
             {post.prompt}
           </p>
         </div>

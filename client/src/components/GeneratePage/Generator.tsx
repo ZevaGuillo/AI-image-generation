@@ -1,5 +1,6 @@
 import { useGenerator } from "../../hooks/useGenerator";
 import CarouselModel from "../Homepage/CarouselModel";
+import Loader from "../Loader";
 
 const Generator = () => {
   const {
@@ -65,9 +66,9 @@ const Generator = () => {
           </form>
           <section className="md:flex-1">
             {loading ? (
-              <h1 className="min-h-[512px] bg-neutral-800 rounded-lg">
-                loading...
-              </h1>
+              <div className="min-h-[512px] grid place-content-center bg-neutral-800 rounded-lg">
+                <Loader/>
+              </div>
             ) : (
               <img
                 className="max-h-[512px] w-full object-cover rounded-lg"

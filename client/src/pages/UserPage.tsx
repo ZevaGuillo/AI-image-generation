@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Navigate } from "react-router";
 import { User } from "../types/user";
 import Gallery from "../components/Homepage/Gallery";
+import Loader from "../components/Loader";
 
 const UserPage = () => {
   const { username } = useParams();
@@ -38,10 +39,12 @@ const UserPage = () => {
   }
 
   if (loading || !user) {
-    return <></>;
+    return (
+      <div className="pt-8">
+        <Loader />;
+      </div>
+    );
   }
-
-  console.log(user)
 
   return (
     // <div className="flex items-center justify-center min-h-screen from-gray-700 via-gray-800 to-gray-900 bg-gradient-to-br">
@@ -55,11 +58,11 @@ const UserPage = () => {
         <div className="py-6 bg-bgColor bg-opacity-80 backdrop-blur-xl drop-shadow-xl">
           <div className="flex flex-wrap ">
             <div className="flex mx-auto">
-                <img
-                  src={user[0].profilePic}
-                  referrerPolicy="no-referrer"
-                  className=" rounded-full min-w-[120px] max-w-[150px] align-middle"
-                />
+              <img
+                src={user[0].profilePic}
+                referrerPolicy="no-referrer"
+                className=" rounded-full min-w-[120px] max-w-[150px] align-middle"
+              />
             </div>
           </div>
           <div className="mt-4 ">
@@ -74,7 +77,11 @@ const UserPage = () => {
           </div>
         </div>
         <div className="bg-bgColor flex-1 pt-8">
-          <Gallery posts={user[0].posts.reverse().map(post => ({...post,user:{...user[0]}})) }/>
+          <Gallery
+            posts={user[0].posts
+              .reverse()
+              .map(post => ({ ...post, user: { ...user[0] } }))}
+          />
         </div>
       </div>
     </div>

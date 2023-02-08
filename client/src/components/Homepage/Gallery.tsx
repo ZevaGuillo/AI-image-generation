@@ -10,6 +10,7 @@ const Gallery = ({ posts }: GalleryProps) => {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {posts.map((post, index) => (
           <Card
+            className={index === 0?'col-span-2 row-span-2' : ''}
             key={`${post.userid}-${index}`}
             post={post}
           />
