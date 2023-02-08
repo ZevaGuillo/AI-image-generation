@@ -5,6 +5,8 @@ import useInfiniteScroll from "../hooks/useInfiniteScroll";
 import { Post } from "../types/post";
 import { modelList } from "../utils/models";
 import Landing from '../components/Homepage/Landing';
+import Loader from "../components/Loader";
+import Swal from "sweetalert2";
 
 const HomePage = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -32,7 +34,12 @@ const HomePage = () => {
         
       }
     } catch (error) {
-      alert(error);
+      Swal.fire({
+        title: 'Out of service',
+        icon: 'error',
+        focusConfirm: false,
+        confirmButtonText: 'Ok',
+      })
     } finally {
       setLoading(false);
     }
@@ -54,9 +61,9 @@ const HomePage = () => {
         posts={posts}
       />
       <div
-        className="min-h-[100px] m-4"
+        className="min-h-[100px] grid place-content-center m-4"
         ref={loadMoreRef}>
-        {loading && "Loading"}
+        {loading && <Loader/>}
       </div>
     </main>
   );

@@ -4,6 +4,7 @@ import { Post } from "../types/post";
 import { modelList } from "../utils/models";
 import { useAppSelector } from './useRedux';
 import { useNavigate } from 'react-router';
+import Swal from "sweetalert2";
 
 export const useGenerator = () => {
     const { _id } = useAppSelector(state => state.auth)
@@ -81,13 +82,25 @@ export const useGenerator = () => {
 
 
             } catch (error) {
-                alert(error);
+                // alert(error);
+                Swal.fire({
+                    title: 'Try again later',
+                    icon: 'error',
+                    focusConfirm: false,
+                    confirmButtonText: 'Ok',
+                  })
             } finally {
                 setLoading(false);
             }
 
         } else {
-            alert("llenar el campo");
+            Swal.fire({
+                title: 'At least complete the prompt',
+                icon: 'info',
+                focusConfirm: false,
+                confirmButtonText:
+                  'Great!',
+              })
         }
     }
 
@@ -111,8 +124,8 @@ export const useGenerator = () => {
                 });
                 const data = await response.json();
 
-                if (data.msg) {
-                    throw new Error('Fuera de servicio')
+                if (data.message || data.messege) {
+                    throw new Error('Out of service')
                 }
 
                 setForm({
@@ -120,12 +133,26 @@ export const useGenerator = () => {
                     image: data.image,
                 });
             } catch (error) {
-                alert(error);
+                Swal.fire({
+                    title: 'Out of service',
+                    text: 'Try again later',
+                    icon: 'error',
+                    focusConfirm: false,
+                    confirmButtonText: 'Ok',
+                  })
             } finally {
                 setLoading(false);
             }
         } else {
-            alert("llenar el campo");
+            // alert("llenar el campo");
+
+              Swal.fire({
+                title: 'At least complete the prompt',
+                icon: 'info',
+                focusConfirm: false,
+                confirmButtonText:
+                  'Great!',
+              })
         }
     };
 
