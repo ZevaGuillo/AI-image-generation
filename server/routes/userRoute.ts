@@ -5,6 +5,6 @@ const userRouter = Router();
 
 userRouter.get('/:slug', getUser)
 
-userRouter.post('/', )
+
 
 export default userRouter
