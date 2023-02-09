@@ -8,12 +8,12 @@ type CardProps = {
 
 const Card = ({ post, className }: CardProps) => {
   return (
-    <div className={` flex flex-col rounded-lg bg-hover overflow-hidden ${className}`}>
+    <div className={`h-full flex flex-col rounded-lg bg-hover overflow-hidden ${className}`}>
       <img
         alt="Developer"
         src={post.image}
-        loading="lazy"
-        className="flex-1 w-full object-cover rounded-lg scale-95 transition-all group-hover:ease-in-out"
+        // loading="lazy"
+        className="flex-1  w-full object-cover rounded-lg scale-95 transition-all group-hover:ease-in-out"
       />
 
       <div className="p-2 min-h-[130px] flex justify-between gap-1 text-sm ">
