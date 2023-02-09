@@ -1,4 +1,5 @@
 import { useGenerator } from "../../hooks/useGenerator";
+import { RxSymbol, RxPaperPlane } from "react-icons/rx";
 import CarouselModel from "../Homepage/CarouselModel";
 import Loader from "../Loader";
 
@@ -8,6 +9,8 @@ const Generator = () => {
     form,
     models,
     handleChange,
+    handleSurpriseMe,
+    handleRandomNegativePrompt,
     handleSubmit,
     createPost,
     handleModel,
@@ -26,21 +29,42 @@ const Generator = () => {
           <form
             className="flex-1 flex flex-col justify-between gap-4"
             onSubmit={handleSubmit}>
+            <label
+              htmlFor="prompt"
+              className="flex items-center gap-4">
+              Prompt{" "}
+              <div onClick={handleSurpriseMe} className="py-[0.1rem] flex items-center gap-1 px-2 bg-pink-500 hover:bg-pink-600 rounded-lg cursor-pointer">
+                Surprise me<RxSymbol/>
+              </div>{" "}
+            </label>
+
             <textarea
-              placeholder="Negative prompt"
-              name="negative_prompt"
-              value={form.negative_prompt}
-              onChange={handleChange}
-              className="flex-1 w-full rounded-lg bg-hover border-none p-3"
-            />
-            <textarea
-              placeholder="Prompt..."
+              placeholder="Closeup face portrait of a..."
               name="prompt"
+              id="prompt"
               value={form.prompt}
               onChange={handleChange}
               className="flex-initial w-full rounded-lg bg-hover border-none p-3 text-lg"
               rows={8}
             />
+
+            <label
+              htmlFor="negative_prompt"
+              className="flex items-center gap-4">
+              Negative Prompt
+              <div onClick={handleRandomNegativePrompt} className="py-[0.1rem] flex items-center gap-1 px-2 bg-purple-500 hover:bg-purple-600 rounded-lg cursor-pointer">
+                Random<RxSymbol/>
+              </div>
+            </label>
+            <textarea
+              id="negative_prompt"
+              placeholder="no words| watermark | bad anatomy..."
+              name="negative_prompt"
+              value={form.negative_prompt}
+              onChange={handleChange}
+              className="flex-1 w-full rounded-lg bg-hover border-none p-3"
+            />
+
             <button
               disabled={loading}
               className="disabled:opacity-25 inline-block rounded-full gradient p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75">
@@ -59,15 +83,15 @@ const Generator = () => {
               <span
                 aria-hidden="true"
                 role="img"
-                className="flex justify-center gap-2 rounded-full bg-bgColor px-4 py-2 text-sm font-medium transition  hover:ease-out hover:bg-transparent">
-                Created post
+                className="flex items-center justify-center gap-2 rounded-full bg-bgColor px-4 py-2 text-sm font-medium transition  hover:ease-out hover:bg-transparent">
+                Share post<RxPaperPlane/>
               </span>
             </button>
           </form>
           <section className="md:flex-1">
             {loading ? (
               <div className="min-h-[512px] grid place-content-center bg-neutral-800 rounded-lg">
-                <Loader/>
+                <Loader />
               </div>
             ) : (
               <img

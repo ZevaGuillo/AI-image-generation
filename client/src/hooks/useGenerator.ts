@@ -5,6 +5,7 @@ import { modelList } from "../utils/models";
 import { useAppSelector } from './useRedux';
 import { useNavigate } from 'react-router';
 import Swal from "sweetalert2";
+import { getRandomPrompt } from "../utils";
 
 export const useGenerator = () => {
     const { _id } = useAppSelector(state => state.auth)
@@ -20,6 +21,17 @@ export const useGenerator = () => {
         image: "",
         model: "",
     });
+
+    const handleSurpriseMe = () => {
+        const randomPrompt = getRandomPrompt(form.prompt);
+        setForm({ ...form, prompt: randomPrompt });
+    };
+
+    const handleRandomNegativePrompt = () => {
+        const randomPrompt = getRandomPrompt(form.prompt, true);
+
+        setForm((prev) => ({ ...form, negative_prompt: prev.negative_prompt.concat(" | "+randomPrompt) }));
+    };
 
     const handleModel = (model_id: string) => {
         setModels(models.map(model => {
@@ -59,7 +71,7 @@ export const useGenerator = () => {
 
     const createPost = async () => {
 
-        if (form.prompt && form.prompt.length > 5 ) {
+        if (form.prompt && form.prompt.length > 5) {
             try {
                 setLoading(true);
                 const response = await fetch("http://localhost:8000/api/v1/post/create", {
@@ -76,7 +88,7 @@ export const useGenerator = () => {
                     }),
                 });
                 const data = await response.json();
-                if(data.status === 'ok'){
+                if (data.status === 'ok') {
                     navigate('/')
                 }
 
@@ -88,7 +100,7 @@ export const useGenerator = () => {
                     icon: 'error',
                     focusConfirm: false,
                     confirmButtonText: 'Ok',
-                  })
+                })
             } finally {
                 setLoading(false);
             }
@@ -99,8 +111,8 @@ export const useGenerator = () => {
                 icon: 'info',
                 focusConfirm: false,
                 confirmButtonText:
-                  'Great!',
-              })
+                    'Great!',
+            })
         }
     }
 
@@ -139,20 +151,20 @@ export const useGenerator = () => {
                     icon: 'error',
                     focusConfirm: false,
                     confirmButtonText: 'Ok',
-                  })
+                })
             } finally {
                 setLoading(false);
             }
         } else {
             // alert("llenar el campo");
 
-              Swal.fire({
+            Swal.fire({
                 title: 'At least complete the prompt',
                 icon: 'info',
                 focusConfirm: false,
                 confirmButtonText:
-                  'Great!',
-              })
+                    'Great!',
+            })
         }
     };
 
@@ -161,6 +173,8 @@ export const useGenerator = () => {
         form,
         models,
         handleChange,
+        handleSurpriseMe,
+        handleRandomNegativePrompt,
         handleSubmit,
         createPost,
         handleModel,
