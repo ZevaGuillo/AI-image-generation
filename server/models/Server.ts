@@ -12,20 +12,20 @@ import session from "express-session";
 import '../helpers/passport'
 import userRouter from "../routes/userRoute";
 
-class Server{
+class Server {
     private app: Application;
     private port: string;
     private paths = {
-        generate: '/generate', 
+        generate: '/generate',
         post: '/post',
         auth: '/auth',
         user: '/user',
     }
 
-    constructor(){
+    constructor() {
         this.app = express();
         this.port = process.env.PORT || '8000';
-  
+
         this.DBConnection()
 
         this.middlewares();
@@ -41,23 +41,30 @@ class Server{
             console.log(error);
         }
     }
-    
+
     middlewares() {
         this.app.use(session({
             secret: `${process.env.COOKIE_SECRET}`,
             resave: true,
-            saveUninitialized: true
+            saveUninitialized: true,
+            proxy: true, 
+            name: 'MyCoolWebAppCookieName', 
+            cookie: {
+                secure: true, 
+                httpOnly: false,
+                sameSite: 'none'
+            }
         }))
         this.app.use(passport.initialize());
         this.app.use(passport.session());
         this.app.use(express.json());
-        this.app.use(express.urlencoded({extended:true}));
-        this.app.use(cors({origin:process.env.CLIENT_URL, credentials: true}));
+        this.app.use(express.urlencoded({ extended: true }));
+        this.app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
         this.app.use(morgan('dev'));
         this.app.use(helmet());
-        
+
     }
-    
+
     routes() {
         this.app.use(`/api/v1${this.paths.generate}`, generateRouter)
         this.app.use(`/api/v1${this.paths.post}`, postRouter)
@@ -65,10 +72,10 @@ class Server{
         this.app.use(`/api/v1${this.paths.user}`, userRouter)
     }
 
-    listen(){
-        this.app.listen(this.port, ()=>{
+    listen() {
+        this.app.listen(this.port, () => {
             console.log(`Server run on port ${this.port}`);
-            
+
         })
     }
 
