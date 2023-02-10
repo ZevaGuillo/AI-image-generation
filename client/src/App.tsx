@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import AppRouter from "./routes/AppRouter";
 import { BrowserRouter } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
     <>
       <BrowserRouter>
         <Navbar />
-        <div className="pt-12">
-          <AppRouter />
-        </div>
+        <AppRouter />
+        <Footer />
       </BrowserRouter>
     </>
   );

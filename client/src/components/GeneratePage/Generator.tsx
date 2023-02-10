@@ -33,8 +33,11 @@ const Generator = () => {
               htmlFor="prompt"
               className="flex items-center gap-4">
               Prompt{" "}
-              <div onClick={handleSurpriseMe} className="py-[0.1rem] flex items-center gap-1 px-2 bg-pink-500 hover:bg-pink-600 rounded-lg cursor-pointer">
-                Surprise me<RxSymbol/>
+              <div
+                onClick={handleSurpriseMe}
+                className="py-[0.1rem] flex items-center gap-1 px-2 bg-pink-500 hover:bg-pink-600 rounded-lg cursor-pointer">
+                Surprise me
+                <RxSymbol />
               </div>{" "}
             </label>
 
@@ -52,8 +55,11 @@ const Generator = () => {
               htmlFor="negative_prompt"
               className="flex items-center gap-4">
               Negative Prompt
-              <div onClick={handleRandomNegativePrompt} className="py-[0.1rem] flex items-center gap-1 px-2 bg-purple-500 hover:bg-purple-600 rounded-lg cursor-pointer">
-                Random<RxSymbol/>
+              <div
+                onClick={handleRandomNegativePrompt}
+                className="py-[0.1rem] flex items-center gap-1 px-2 bg-purple-500 hover:bg-purple-600 rounded-lg cursor-pointer">
+                Random
+                <RxSymbol />
               </div>
             </label>
             <textarea
@@ -75,18 +81,6 @@ const Generator = () => {
                 Generate 😜
               </span>
             </button>
-            <button
-              type="button"
-              onClick={createPost}
-              disabled={!form.image}
-              className="disabled:opacity-25 inline-block rounded-full gradient p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75">
-              <span
-                aria-hidden="true"
-                role="img"
-                className="flex items-center justify-center gap-2 rounded-full bg-bgColor px-4 py-2 text-sm font-medium transition  hover:ease-out hover:bg-transparent">
-                Share post<RxPaperPlane/>
-              </span>
-            </button>
           </form>
           <section className="md:flex-1">
             {loading ? (
@@ -105,6 +99,21 @@ const Generator = () => {
               />
             )}
           </section>
+        </div>
+        <div className="flex justify-end w-full">
+          <button
+            type="button"
+            onClick={createPost}
+            disabled={!form.image}
+            className="w-2/3 md:w-1/5 mt-4 disabled:opacity-25 rounded-full gradient p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75">
+            <span
+              aria-hidden="true"
+              role="img"
+              className="flex items-center justify-center gap-2 rounded-full bg-bgColor px-4 py-2 text-sm font-medium transition  hover:ease-out hover:bg-transparent">
+              Share post
+              <RxPaperPlane />
+            </span>
+          </button>
         </div>
       </section>
     </section>

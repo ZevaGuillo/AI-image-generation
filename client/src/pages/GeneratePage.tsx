@@ -3,7 +3,7 @@ import Hero from "../components/GeneratePage/Hero";
 
 const GeneratePage = () => {
   return (
-    <main>
+    <main className="pt-16">
       <Hero />
       <Generator/>
     </main>

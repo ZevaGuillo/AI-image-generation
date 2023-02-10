@@ -8,7 +8,7 @@ type CardProps = {
 
 const Card = ({ post, className }: CardProps) => {
   return (
-    <div className={`h-full flex flex-col rounded-lg bg-hover overflow-hidden ${className}`}>
+    <div className={`h-full flex flex-col rounded-lg bg-hover  shadow-sm overflow-hidden ${className}`}>
       <img
         alt="Developer"
         src={post.image}
@@ -31,7 +31,7 @@ const Card = ({ post, className }: CardProps) => {
               </h3>
             </Link>
             {post.model && (
-              <p className=" bg-violet-500 w-fit py-1 px-3 rounded-xl text-gray-100 text-xs text-center">
+              <p className=" bg-indigo-500 w-fit py-1 px-3 rounded-xl text-gray-100 text-xs text-center">
                 {post.model}
               </p>
             )}

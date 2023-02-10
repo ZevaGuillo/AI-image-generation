@@ -1,6 +1,5 @@
 import FileSaver from 'file-saver';
-import { surpriseMePrompts } from '../constants';
-import { negativePrompts } from './constants';
+import { surpriseMePrompts, negativePrompts } from './constants';
 
 export function getRandomPrompt(prompt: string, negative: boolean = false): string {
 

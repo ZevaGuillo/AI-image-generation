@@ -50,7 +50,7 @@ const HomePage = () => {
   }, [fetchPosts]);
 
   return (
-    <main className="">
+    <main className="pt-16">
       <Landing/>
       <CarouselModel
         models={modelList}

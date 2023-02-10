@@ -34,22 +34,25 @@ const UserPage = () => {
     fetchUser();
   }, [username]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   if (user?.length === 0) {
     return <Navigate to={"/"} />;
   }
 
   if (loading || !user) {
     return (
-      <div className="pt-8">
-        <Loader />;
+      <div className="pt-28 bg-transparent min-h-[100vh]">
+        <Loader />
       </div>
     );
   }
 
   return (
-    // <div className="flex items-center justify-center min-h-screen from-gray-700 via-gray-800 to-gray-900 bg-gradient-to-br">
-    <div
-      className=" bg-bgColor h-[100vh]"
+    <main
+      className="pt-16 bg-bgColor min-h-[100vh]"
       style={{
         backgroundImage:
           "url(https://cdna.artstation.com/p/assets/images/images/000/215/866/large/anton-fadeev-bloodmoon-ruins2-1-800-logo.jpg?1443930004)",
@@ -84,7 +87,7 @@ const UserPage = () => {
           />
         </div>
       </div>
-    </div>
+    </main>
   );
 };
 

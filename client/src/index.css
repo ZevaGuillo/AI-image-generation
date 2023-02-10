@@ -7,10 +7,8 @@
 }
 
 :root {
-  --white-bg: #f2f3f7;
-  --white: #ffffff;
-  --dark: #575757;
-  --thumb-bg: #5c5c6665;
+  --dark: #464545;
+  --thumb-bg: #57505065;
 }
 ::-webkit-scrollbar {
   width: 5px;
@@ -18,19 +16,40 @@
 }
 ::-webkit-scrollbar-thumb {
   background: var(--thumb-bg);
-  border-radius: var(--radius);
+  border-radius: 8px;
 }
 ::-webkit-scrollbar-thumb:active,
 ::-webkit-scrollbar-thumb:hover {
   background: var(--dark);
 }
 ::-webkit-scrollbar-track {
-  background: #80808014;
+  background: #252423;
 }
 
 body {
-  background-color: #212121;
+  background: #202020;
+  overflow-x: hidden;
+ background-blend-mode: multiply;
   color: #f2f2f2;
+}
+
+.background{
+  background: #323232 ;
+  background-blend-mode: multiply;
+}
+
+body::before{
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: -15rem;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 100%;
+  filter: blur(50px);
+  background: linear-gradient(to right, rgb(251, 113, 133), rgb(217, 70, 239), rgb(99, 102, 241));
+  width: 100vw;
+  height: 300px;
 }
 
 .prompt::-webkit-scrollbar {
@@ -43,11 +62,11 @@ body {
 }
 
 .gradient {
-  @apply bg-gradient-to-r from-rose-400 to-orange-300;
+  @apply bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500
 }
 
 .gradient-google {
-  background: linear-gradient(-120deg, #4285f4, #34a853, #fbbc05, #ea4335);
+  background: linear-gradient(-120deg, #0477BF, #49BF72, #F2DC6B, #F24B59);
 }
 
 .text-gradient {

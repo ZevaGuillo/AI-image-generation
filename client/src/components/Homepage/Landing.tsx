@@ -12,7 +12,7 @@ const Landing = () => {
 
 
   return (
-    <article className="mb-6 px-2 md:px-8 md:min-h-[50vh] flex flex-col justify-center items-center">
+    <article className="backdrop-blur-md mb-6 px-2 md:px-8 md:min-h-[50vh] flex flex-col justify-center items-center">
       <h2 className="font-bold text-5xl text-center leading-relaxed text-gradient">
         PixelAI
       </h2>

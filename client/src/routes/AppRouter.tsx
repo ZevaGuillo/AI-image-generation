@@ -30,7 +30,7 @@ const AppRouter = () => {
     <Route path="/*" element={<Navigate to={'/'}/>}/>
 
 
-  </Routes>;
+  </Routes>
 };
 
 export default AppRouter;
