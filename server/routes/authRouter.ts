@@ -1,8 +1,11 @@
-import { Request, Response, Router } from "express";
-import { check } from "express-validator";
+import { Router } from "express";
 import passport from "passport";
 import { loginFailed, loginSuccess, logout } from "../controllers/auth";
-import { validate } from '../middlewares/validate';
+
+import * as dotenv from 'dotenv';
+dotenv.config();
+
+let clientURL: string = process.env.CLIENT_URL
 
 const authRouter = Router();
 
@@ -14,7 +17,7 @@ authRouter.get('/login/failed', loginFailed)
 authRouter.get("/google", passport.authenticate('google', ["profile", "email"] as any));
 
 authRouter.get('/google/callback', passport.authenticate('google', {
-  successRedirect: 'http://localhost:5173',
+  successRedirect: clientURL,
   failureRedirect: '/login/failed'
 }))
 

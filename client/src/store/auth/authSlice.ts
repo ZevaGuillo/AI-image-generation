@@ -8,6 +8,7 @@ const initialState: User = {
   slug: '',
   email: '',
   profilePic: '',
+  posts: []
 }
 
 const authSlice = createSlice({

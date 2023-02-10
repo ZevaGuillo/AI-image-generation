@@ -22,7 +22,7 @@ export const logout = async (req: Request, res: Response) => {
 
     req.logout({}, (err: any) => {
         if (err) return res.status(500).json({ msg: 'Something went wrong.' });
-        res.redirect('http://localhost:5173')
+        res.redirect(`${process.env.CLIENT_URL}`)
     })
 
 }
