@@ -74,7 +74,7 @@ export const useGenerator = () => {
         if (form.prompt && form.prompt.length > 5) {
             try {
                 setLoading(true);
-                const response = await fetch("http://localhost:8000/api/v1/post/create", {
+                const response = await fetch(`${import.meta.env.VITE_SERVER}/api/v1/post/create`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -84,7 +84,7 @@ export const useGenerator = () => {
                         model: form.model,
                         prompt: form.prompt,
                         negative_prompt: form.negative_prompt,
-                        image: form.image || 'https://d1okzptojspljx.cloudfront.net/generations/cd8f53f5-ebb9-45bc-b8cb-d6be2cc6cfa9-0.png',
+                        image: form.image,
                     }),
                 });
                 const data = await response.json();
@@ -123,7 +123,7 @@ export const useGenerator = () => {
             try {
                 setLoading(true);
                 //* FETCH
-                const response = await fetch("http://localhost:8000/api/v1/generate", {
+                const response = await fetch(`${import.meta.env.VITE_SERVER}/api/v1/generate`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

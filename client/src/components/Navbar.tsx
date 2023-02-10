@@ -7,7 +7,7 @@ const Navbar = () => {
   const { status } = useAppSelector(state => state.auth);
 
   const handleOnClick = () => {
-    window.open("http://localhost:8000/api/v1/auth/google/callback", "_self");
+    window.open(`${import.meta.env.VITE_SERVER}/api/v1/auth/google/callback`, "_self");
   };
 
   return (

@@ -9,7 +9,7 @@ export const startLoginWithGoogle = (): ThunkAction<void, RootState, unknown, An
   return async (dispatch, getState) => {
     try {
       dispatch(checkingCredentials())
-      const response = await fetch('http://localhost:8000/api/v1/auth/login/success', { credentials: 'include' });
+      const response = await fetch(`${import.meta.env.VITE_SERVER}/api/v1/auth/login/success`, { credentials: 'include' });
       const data = await response.json();
       
       dispatch(login(data.user))

@@ -20,7 +20,7 @@ const HomePage = () => {
       setLoading(true);
       if (!last) {
         const response = await fetch(
-          `http://localhost:8000/api/v1/post/?since=${skip}`
+          `${import.meta.env.VITE_SERVER}/api/v1/post/?since=${skip}`
         );
 
         if (response.ok) {
