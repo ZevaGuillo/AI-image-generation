@@ -3,9 +3,13 @@ import { Request, Response } from "express";
 
 export const loginSuccess = async (req: Request, res: Response) => {
 
+    console.log(req.user);
+
     if (req.user) {
+        
         res.status(200).json({ user: req.user });
     } else {
+        
         res.status(401).json({ msg: 'Not Authorized' });
     }
 
