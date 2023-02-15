@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/dfcab03a-6200-4a3a-a5a6-0d1329ea2fbd/AppServices/subscriptions/dfcab03a-6200-4a3a-a5a6-0d1329ea2fbd/resourceGroups/pixelai_group/providers/Microsoft.Web/sites/pixelai",
+    "appService.deploySubpath": "."
+}
