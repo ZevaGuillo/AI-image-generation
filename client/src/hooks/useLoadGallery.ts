@@ -8,16 +8,16 @@ const useLoadGallery = () => {
 
     const dispatch = useAppDispatch();
 
-    const { last } = useAppSelector(state => state.gallery)
+    const { last, search, skip } = useAppSelector(state => state.gallery)
 
-    const { loadMoreRef, skip } = useInfiniteScroll();
+    const { loadMoreRef} = useInfiniteScroll();
 
     const fetchPosts = useCallback(async () => {
         try {
             dispatch(onLoading())
             if (!last) {
                 const response = await fetch(
-                    `${import.meta.env.VITE_SERVER}/api/v1/post/?since=${skip}`
+                    `${import.meta.env.VITE_SERVER}/api/v1/post?since=${skip}&text=${search}`
                 );
 
                 if (response.ok) {
@@ -25,7 +25,7 @@ const useLoadGallery = () => {
                     dispatch(onAddPosts(result.posts));
 
                     if (result.posts.length < 10) {
-                        dispatch(onSetLast());
+                        dispatch(onSetLast(true));
                     }
                 }
 
@@ -40,7 +40,7 @@ const useLoadGallery = () => {
         } finally {
             dispatch(onLoading())
         }
-    }, [skip]);
+    }, [skip, search]);
 
     useEffect(() => {
         fetchPosts();

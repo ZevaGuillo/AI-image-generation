@@ -3,14 +3,18 @@ import { Post } from "../../types/post";
 
 type GalleryState = {
     posts: Post[],
+    skip: number,
     last: boolean,
     loading: boolean
+    search: string,
 }
 
 const initialState: GalleryState = {
     posts: [],
+    skip:0,
     last: false,
-    loading: false
+    loading: false,
+    search: ''
 };
 
 const gallerySlice = createSlice({
@@ -20,16 +24,24 @@ const gallerySlice = createSlice({
         onLoading: (state) => {
             state.loading = !state.loading;
         },
-        onAddPosts: (state, { payload })=>{
-            // setPosts(prev => [...prev, ...result.posts]);
+        onSetSkip: (state)=>{
+            state.skip = state.skip + 10;
+        },
+        onAddPosts: (state, { payload }) => {
             state.posts = [...state.posts, ...payload]
         },
-        onSetLast: (state)=>{
-            state.last = !state.last;
+        onSetLast: (state, { payload }) => {
+            state.last = payload;
+        },
+        onSetSearch: (state, { payload }) => {
+            state.posts = []
+            state.skip = 0
+            state.last = false
+            state.search = payload
         }
     },
 });
 
-export const { onLoading, onSetLast, onAddPosts } = gallerySlice.actions;
+export const { onLoading, onSetSkip, onSetLast, onAddPosts, onSetSearch } = gallerySlice.actions;
 
 export default gallerySlice.reducer;

@@ -1,13 +1,16 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
+import { onSetSkip } from '../store/gallery/gallerySlice';
+import { useAppDispatch } from './useRedux';
 
 export const useInfiniteScroll = () => {
-    const [skip, setSkip] = useState(0);
+    const dispatch = useAppDispatch();
+    
     const loadMoreRef = useRef<HTMLDivElement>(null);
   
     const handleObserver = useCallback((entries:any) => {
       const [target] = entries;
       if (target.isIntersecting) {
-        setSkip((prev)=>prev+10);
+        dispatch(onSetSkip());
       }
     }, []);
   
@@ -23,7 +26,7 @@ export const useInfiniteScroll = () => {
       if (loadMoreRef.current) observer.observe(loadMoreRef.current);
     }, [handleObserver]);
   
-    return { loadMoreRef, skip };
+    return { loadMoreRef };
   }
   
   export default useInfiniteScroll;

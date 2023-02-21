@@ -1,30 +1,14 @@
 import { useState } from "react";
-import Swal from "sweetalert2";
+import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
+import { onSetSearch } from "../../store/gallery/gallerySlice";
 const Search = () => {
-  const [search, setSearch] = useState("");
+  const [inputSearch, setInputSearch] = useState("");
+  const dispatch = useAppDispatch();
+  const {search} = useAppSelector(state => state.gallery);
 
   const onClick = async () => {
-    try {
-      if (search.length >= 3) {
-        const response = await fetch(`${import.meta.env.VITE_SERVER}/api/v1/post?text=${search}`);
-
-        if (response.ok) {
-          const result = await response.json();
-          console.log(result);
-        }
-      }
-    } catch (error) {
-      console.log(error);
-
-      Swal.fire({
-        title: "Out of service",
-        text: "Search not working",
-        icon: "error",
-        focusConfirm: false,
-        confirmButtonText: "Ok",
-      });
-    } finally {
-      // setLoading(false);
+    if (inputSearch !== search) {
+      dispatch(onSetSearch(inputSearch));
     }
   };
 
@@ -35,8 +19,8 @@ const Search = () => {
           className="h-10 w-full rounded-full border-none bg-hover pl-4 pr-10 text-sm shadow-sm"
           id="search"
           type="search"
-          value={search}
-          onChange={e => setSearch(e.target.value)}
+          value={inputSearch}
+          onChange={e => setInputSearch(e.target.value)}
           placeholder="Search..."
         />
 
