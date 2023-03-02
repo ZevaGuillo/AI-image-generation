@@ -32,6 +32,14 @@ type CarouselModelProps = {
 
 const CarouselModel = ({models,handleModel, removerModel}:CarouselModelProps) => {
 
+  const onActive = (model: any) =>{
+    if(model.active){
+      removerModel(model.mode_id)
+      return;
+    }
+    handleModel(model.mode_id)
+    return;
+  }
 
   return (
     <section className="px-2 mb-6 md:px-20 border-y border-hover py-4">
@@ -39,8 +47,7 @@ const CarouselModel = ({models,handleModel, removerModel}:CarouselModelProps) =>
         {models.map((model, index) => (
           <div
             key={index}
-            onClick={() => handleModel(model.mode_id)}
-            onDoubleClick={()=>removerModel(model.mode_id)}
+            onClick={() => onActive(model)}
             className={`flex p-2 rounded-xl items-center gap-4 mr-4 hover:bg-neutral-900 transition  hover:ease-out ${
               model.active && "bg-hover"
             }`}>
