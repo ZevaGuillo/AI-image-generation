@@ -126,3 +126,7 @@ export const modelList: Model[] = [
         active: false
     },
 ]
+
+export const getActiveFalse = ()=>{
+    return modelList.map(model => ({...model, active:false}));
+}

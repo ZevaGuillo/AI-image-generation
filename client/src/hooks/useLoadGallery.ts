@@ -8,7 +8,7 @@ const useLoadGallery = () => {
 
     const dispatch = useAppDispatch();
 
-    const { last, search, skip } = useAppSelector(state => state.gallery)
+    const { last, search, skip, model } = useAppSelector(state => state.gallery)
 
     const { loadMoreRef} = useInfiniteScroll();
 
@@ -17,7 +17,7 @@ const useLoadGallery = () => {
             dispatch(onLoading())
             if (!last) {
                 const response = await fetch(
-                    `${import.meta.env.VITE_SERVER}/api/v1/post?since=${skip}&text=${search}`
+                    `${import.meta.env.VITE_SERVER}/api/v1/post?since=${skip}&text=${search}&model=${model}`
                 );
 
                 if (response.ok) {
@@ -40,7 +40,7 @@ const useLoadGallery = () => {
         } finally {
             dispatch(onLoading())
         }
-    }, [skip, search]);
+    }, [skip, search, model]);
 
     useEffect(() => {
         fetchPosts();
