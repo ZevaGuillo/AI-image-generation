@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useAppSelector } from "../../hooks/useRedux";
 import Button from "../Button";
+import Search from './Search';
 
 const Landing = () => {
   const { status } = useAppSelector(state => state.auth);
@@ -30,6 +31,7 @@ const Landing = () => {
             Start creating now
         </Button>
       )}
+      <Search/>
     </article>
   );
 };

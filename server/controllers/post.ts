@@ -3,13 +3,27 @@ import Post from "../models/mongo/Post";
 import User from "../models/mongo/User";
 
 export const getPosts = async (req: Request, res: Response) => {
-    const { limit = 10, since = 0 } = req.query;
+    const { limit = 10, since = 0, text = "", model = "" } = req.query;
 
-    const posts = await Post.find()
-        .sort({$natural:-1}) 
-        .skip(Number(since))
-        .limit(Number(limit))
-        .populate('user')
+    console.log(model);
+    let posts;
+
+    if (model) {
+        posts = await Post.find({ prompt: { $regex: text }, model: model })
+            .sort({ $natural: -1 })
+            .skip(Number(since))
+            .limit(Number(limit))
+            .populate('user')
+    } else {
+        posts = await Post.find({ prompt: { $regex: text } })
+            .sort({ $natural: -1 })
+            .skip(Number(since))
+            .limit(Number(limit))
+            .populate('user')
+    }
+
+
+
 
     res.json({
         posts
@@ -18,12 +32,12 @@ export const getPosts = async (req: Request, res: Response) => {
 
 export const createPost = async (req: Request, res: Response) => {
 
-    const { prompt, negative_prompt ,userid, image, model } = req.body;
+    const { prompt, negative_prompt, userid, image, model } = req.body;
 
 
     try {
         const user = await User.findById(userid);
-        
+
         const postDB = new Post({
             model,
             prompt,
