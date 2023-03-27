@@ -6,17 +6,17 @@ type CardProps = {
   className?: string; 
 };
 
-const Card = ({ post, className }: CardProps) => {
+const Card = ({ post, className='' }: CardProps) => {
   return (
-    <div className={`h-full flex flex-col rounded-lg bg-hover  shadow-sm overflow-hidden ${className}`}>
+    <div className={` rounded-lg bg-hover  shadow-sm overflow-hidden ${className}`}>
       <img
         alt="Developer"
         src={post.image}
-        // loading="lazy"
-        className="flex-1  w-full object-cover rounded-lg scale-95 transition-all group-hover:ease-in-out"
+        loading="lazy"
+        className="w-full object-cover scale-100 transition-all group-hover:ease-in-out"
       />
 
-      <div className="p-2 min-h-[130px] flex justify-between gap-1 text-sm ">
+      <div className="p-2  flex justify-between gap-1 text-sm ">
         <div>
           <div className="flex gap-2 flex-col">
             <Link to={`/${post.user?.slug}`} className="group flex-1 flex items-center gap-2">
@@ -37,9 +37,9 @@ const Card = ({ post, className }: CardProps) => {
             )}
           </div>
 
-          <p className="mt-1.5 max-h-[50px] overflow-ellipsis overflow-hidden text-xs text-gray-100">
+          {/* <p className="mt-1.5 max-h-[50px] overflow-ellipsis overflow-hidden text-xs text-gray-100">
             {post.prompt}
-          </p>
+          </p> */}
         </div>
       </div>
     </div>
