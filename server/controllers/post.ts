@@ -1,33 +1,51 @@
 import { Request, Response } from "express"
 import Post from "../models/mongo/Post";
 import User from "../models/mongo/User";
+import cd from 'cloudinary'
+const cloudinary = cd.v2
+import dotenv from 'dotenv';
+dotenv.config();
+
+  cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET,
+  });
 
 export const getPosts = async (req: Request, res: Response) => {
     const { limit = 10, since = 0, text = "", model = "" } = req.query;
 
-    console.log(model);
     let posts;
 
-    if (model) {
-        posts = await Post.find({ prompt: { $regex: text }, model: model })
-            .sort({ $natural: -1 })
-            .skip(Number(since))
-            .limit(Number(limit))
-            .populate('user')
-    } else {
-        posts = await Post.find({ prompt: { $regex: text } })
-            .sort({ $natural: -1 })
-            .skip(Number(since))
-            .limit(Number(limit))
-            .populate('user')
+    try {
+        
+        
+        if (model) {
+            posts = await Post.find({ prompt: { $regex: text }, model: model })
+                    .sort({ $natural: -1 })
+                    .skip(Number(since))
+                    .limit(Number(limit))
+                    .populate('user')
+        } else {
+            posts = await Post.find({ prompt: { $regex: text } })
+                    .sort({ $natural: -1 })
+                    .skip(Number(since))
+                    .limit(Number(limit))
+                    .populate('user')
+        }
+        
+        
+        return res.json({
+            posts
+        })
+    } catch (error) {
+        console.log(error);
+
+        return res.status(500).json({
+            msg: error,
+            error
+        })
     }
-
-
-
-
-    res.json({
-        posts
-    })
 }
 
 export const createPost = async (req: Request, res: Response) => {
@@ -38,10 +56,12 @@ export const createPost = async (req: Request, res: Response) => {
     try {
         const user = await User.findById(userid);
 
+        const {secure_url} = await cloudinary.uploader.upload( image )
+
         const postDB = new Post({
             model,
             prompt,
-            image,
+            image: secure_url,
             negative_prompt,
             user: user._id
         });
