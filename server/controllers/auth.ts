@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 
 export const loginSuccess = async (req: Request, res: Response) => {
 
-    console.log(req.user);
+    // console.log(req.user);
 
     if (req.user) {
         

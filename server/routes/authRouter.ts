@@ -21,6 +21,13 @@ authRouter.get('/google/callback', passport.authenticate('google', {
   failureRedirect: '/login/failed'
 }))
 
+authRouter.get("/facebook", passport.authenticate('facebook', {scope: 'email'}));
+
+authRouter.get('/facebook/callback', passport.authenticate('facebook', {
+  successRedirect: clientURL,
+  failureRedirect: '/login/failed'
+}))
+
 authRouter.get('/logout', logout)
 
 export default authRouter;

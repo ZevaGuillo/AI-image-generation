@@ -89,6 +89,10 @@ body::before{
   background: linear-gradient(-120deg, #0477BF, #49BF72, #F2DC6B, #F24B59);
 }
 
+.gradient-facebook{
+  @apply bg-gradient-to-r from-blue-500 to-blue-600
+}
+
 .text-gradient {
   @apply font-extrabold text-transparent bg-clip-text gradient;
 }
