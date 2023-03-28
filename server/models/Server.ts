@@ -51,7 +51,7 @@ class Server {
             name: 'MyCoolWebAppCookieName', 
             cookie: {
                 secure: true, 
-                httpOnly: false,
+                httpOnly: true,
                 sameSite: 'none'
             }
         }))
