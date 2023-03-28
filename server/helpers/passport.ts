@@ -56,7 +56,7 @@ passport.use(
                 const newuser = await User.create({
                     username: profile.displayName,
                     slug: createSlug(profile.displayName),
-                    email: '',
+                    email: `${profile.id}-${profile.displayName}`,
                     profilePic: profile.photos[0].value,
                     _id: profile.id
                 })
