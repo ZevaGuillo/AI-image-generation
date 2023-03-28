@@ -10,7 +10,7 @@ let clientURL: string = process.env.CLIENT_URL
 const authRouter = Router();
 
 
-authRouter.get('/login/success',loginSuccess)
+authRouter.get('/login/success', loginSuccess)
 
 authRouter.get('/login/failed', loginFailed)
 
@@ -21,7 +21,7 @@ authRouter.get('/google/callback', passport.authenticate('google', {
   failureRedirect: '/login/failed'
 }))
 
-authRouter.get("/facebook", passport.authenticate('facebook', {scope: 'email'}));
+authRouter.get("/facebook", passport.authenticate('facebook', { scope: 'email' }));
 
 authRouter.get('/facebook/callback', passport.authenticate('facebook', {
   successRedirect: clientURL,
