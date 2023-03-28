@@ -1,4 +1,5 @@
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20'
+import {Strategy as FacebookStrategy} from 'passport-facebook'
 import passport from 'passport'
 import * as dotenv from 'dotenv';
 import User from '../models/mongo/User';
@@ -34,6 +35,36 @@ passport.use(
         }
     )
 )
+
+passport.use( 
+    new FacebookStrategy(
+        {
+            clientID: `${process.env.FACEBOOK_APP_ID}`,
+            clientSecret: `${process.env.FACEBOOK_APP_SECRET}`,
+            callbackURL: '/api/v1/auth/facebook/callback',
+            profileFields: ['id', 'displayName', 'picture', 'emails']
+        },
+        async (_accessToken: string, _refreshToken: string, profile: any, done) => {
+            const user = await User.findById(profile.id);
+            // console.log(_accessToken);
+            
+            if (user) {
+                return done(null, user);
+
+            } else {
+                const newuser = await User.create({
+                    username: profile.displayName,
+                    slug: createSlug(profile.displayName),
+                    email: '',
+                    profilePic: profile.photos[0].value,
+                    _id: profile.id
+                })
+                return done(null, newuser);
+            }
+        }
+    )
+)
+
 
 passport.serializeUser((user:any, done) => {
     done(null, user.id)
