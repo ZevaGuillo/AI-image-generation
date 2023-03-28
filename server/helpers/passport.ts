@@ -41,7 +41,8 @@ passport.use(
         {
             clientID: `${process.env.FACEBOOK_APP_ID}`,
             clientSecret: `${process.env.FACEBOOK_APP_SECRET}`,
-            callbackURL: `https://pixelai.azurewebsites.net/api/v1/auth/facebook/callback`,
+            // callbackURL: `https://pixelai.azurewebsites.net/api/v1/auth/facebook/callback`,
+            callbackURL: `https://pixelai-server.onrender.com/api/v1/auth/facebook/callback`,
             profileFields: ['id', 'displayName', 'picture', 'emails']
         },
         async (_accessToken: string, _refreshToken: string, profile: any, done) => {
