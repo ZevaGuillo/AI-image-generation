@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { startLoginWithGoogle } from "../store/auth/thunks";
 import UserPage from "../pages/UserPage";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
+import Terms from "../pages/Terms";
 
 const AppRouter = () => {
 
@@ -27,7 +28,8 @@ const AppRouter = () => {
 
     <Route path="/:username" element={<UserPage/>}/>
 
-    <Route path="/privacy" element={<PrivacyPolicy/>}/>
+    <Route path="/privacy-policy" element={<PrivacyPolicy/>}/>
+    <Route path="/terms" element={<Terms/>}/>
 
     <Route path="/*" element={<Navigate to={'/'}/>}/>
 

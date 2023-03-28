@@ -2,19 +2,7 @@ import React from "react";
 
 const PrivacyPolicy = () => {
   return (
-    <div>
-      <meta charSet="utf-8" />
-      <meta
-        name="viewport"
-        content="width=device-width"
-      />
-      <title>Privacy Policy</title>
-      <style
-        dangerouslySetInnerHTML={{
-          __html:
-            " body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding:1em; } ",
-        }}
-      />
+    <div className="pt-16 px-2 py-4 md:px-32 ">
       <strong>Privacy Policy</strong>{" "}
       <p>
         Guillermo Zevallos built the PixelAI app as an Open Source app. This
@@ -76,28 +64,6 @@ const PrivacyPolicy = () => {
               Facebook
             </a>
           </li>
-          {/**/}
-          {/**/}
-          {/**/}
-          {/**/}
-          {/**/}
-          {/**/}
-          {/**/}
-          {/**/}
-          {/**/}
-          {/**/}
-          {/**/}
-          {/**/}
-          {/**/}
-          {/**/}
-          {/**/}
-          {/**/}
-          {/**/}
-          {/**/}
-          {/**/}
-          {/**/}
-          {/**/}
-          {/**/}
           {/**/}
         </ul>
       </div>{" "}
