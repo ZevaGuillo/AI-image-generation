@@ -4,11 +4,18 @@ import { Navigate } from "react-router";
 import { User } from "../types/user";
 import Gallery from "../components/Homepage/Gallery";
 import Loader from "../components/Loader";
+import { FiLogOut } from "react-icons/fi";
+import { useAppSelector } from "../hooks/useRedux";
 
 const UserPage = () => {
+  const { status } = useAppSelector(state => state.auth);
   const { username } = useParams();
   const [user, setUser] = useState<User[]>();
   const [loading, setLoading] = useState(false);
+
+  const handleOnClick = () => {
+    window.open(`${import.meta.env.VITE_SERVER}/api/v1/auth/logout`, "_self");
+  };
 
   const fetchUser = async () => {
     setLoading(true);
@@ -68,10 +75,17 @@ const UserPage = () => {
               />
             </div>
           </div>
-          <div className="mt-4 ">
+          <div className="mt-4 flex justify-center items-center gap-3">
             <h3 className="mb-1 text-2xl text-center font-bold leading-normal text-gray-300">
               {user[0].username}
             </h3>
+            {status === "authenticated" && (
+              <div
+                className="hover:bg-hover hover:bg-opacity-60 p-2 rounded-full"
+                onClick={handleOnClick}>
+                <FiLogOut className="text-lg " />
+              </div>
+            )}
           </div>
           <div className="pt-6 mx-6 mt-6 text-center border-t border-gray-700/50">
             <div className="flex flex-wrap justify-center ">
