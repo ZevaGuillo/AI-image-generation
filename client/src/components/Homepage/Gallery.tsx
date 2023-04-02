@@ -7,16 +7,16 @@ type GalleryProps = {
 };
 
 const breakpointColumnsObj = {
-  default: 4,
+  default: 5,
   1100: 4,
-  900:3,
+  900:4,
   700: 3,
   580: 2
 };
 
 const Gallery = ({ posts }: GalleryProps) => {
   return (
-    <section className="px-2 md:px-32">
+    <section className="px-2 md:px-20">
       {/* <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         
       </div> */}

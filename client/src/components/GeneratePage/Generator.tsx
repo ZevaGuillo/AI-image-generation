@@ -19,12 +19,13 @@ const Generator = () => {
 
   return (
     <section>
+      <h2 className="px-2 mt-4 md:px-20 py-1 text-2xl ">Customize your image with different AI models</h2>
       <CarouselModel
         models={models}
         handleModel={handleModel}
         removerModel={removerModel}
       />
-      <section className="px-2 py-4 md:px-32 ">
+      <section className="px-2 py-4 md:px-20 ">
         <div className="flex flex-col gap-4 md:gap-8 md:flex-row-reverse md:justify-center">
           <form
             className="flex-1 flex flex-col justify-between gap-4"
