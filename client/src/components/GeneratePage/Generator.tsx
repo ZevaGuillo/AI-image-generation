@@ -1,7 +1,10 @@
 import { useGenerator } from "../../hooks/useGenerator";
-import { RxSymbol, RxPaperPlane } from "react-icons/rx";
+import { RxSymbol, RxPaperPlane, RxInfoCircled } from "react-icons/rx";
+
 import CarouselModel from "../Homepage/CarouselModel";
 import Loader from "../Loader";
+import { Tooltip } from "flowbite-react";
+import { FaMagic } from "react-icons/fa";
 
 const Generator = () => {
   const {
@@ -19,26 +22,40 @@ const Generator = () => {
 
   return (
     <section>
-      <h2 className="px-2 mt-4 md:px-20 py-1 text-2xl ">Customize your image with different AI models</h2>
+      <Tooltip
+        content="Tooltip content"
+        trigger="hover"
+      >
+        {/* <label htmlFor="default-range" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Default range</label>
+<input id="default-range" type="range" value="50" className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700" /> */}
+      </Tooltip>
       <CarouselModel
         models={models}
+        title="Customize your image with different AI models"
         handleModel={handleModel}
         removerModel={removerModel}
       />
       <section className="px-2 py-4 md:px-20 ">
-        <div className="flex flex-col gap-4 md:gap-8 md:flex-row-reverse md:justify-center">
+        <div className="flex flex-col gap-4 md:gap-8 md:flex-row md:justify-center">
           <form
             className="flex-1 flex flex-col justify-between gap-4"
             onSubmit={handleSubmit}>
             <label
               htmlFor="prompt"
               className="flex items-center gap-4">
-              Prompt{" "}
+              <span>Prompt</span>
+              <Tooltip
+                content="Give us your ideas and we'll let AI do its magic!"
+                animation="duration-300"
+                arrow={false}
+              >
+                <RxInfoCircled/>
+              </Tooltip>
               <div
                 onClick={handleSurpriseMe}
-                className="py-[0.1rem] flex items-center gap-1 px-2 bg-pink-500 hover:bg-pink-600 rounded-lg cursor-pointer">
+                className="py-[0.1rem] flex items-center gap-1 px-2 bg-pink-500 hover:bg-pink-600 rounded-lg cursor-pointer select-none">
                 Surprise me
-                <RxSymbol />
+                <FaMagic />
               </div>{" "}
             </label>
 
