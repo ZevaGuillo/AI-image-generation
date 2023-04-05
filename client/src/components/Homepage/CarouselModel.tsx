@@ -28,9 +28,11 @@ type CarouselModelProps = {
   handleModel: (model_id:string)=>void
   removerModel:(model_id: string)=>void
   models: Model[];
+  title?: string
+  className?:string;
 }
 
-const CarouselModel = ({models,handleModel, removerModel}:CarouselModelProps) => {
+const CarouselModel = ({models,handleModel, removerModel, title, className}:CarouselModelProps) => {
 
   const onActive = (model: any) =>{
     if(model.active){
@@ -42,19 +44,21 @@ const CarouselModel = ({models,handleModel, removerModel}:CarouselModelProps) =>
   }
 
   return (
-    <section className="px-2 mb-6 md:px-20 border-y border-hover py-4">
+    <section className={className? className: "px-2 mb-6 md:px-20 border-y border-hover py-4"}>
+
+    <h2 className="opacity-30 text-lg pb-3">{title}</h2>
       <Carousel responsive={responsive}>
         {models.map((model, index) => (
           <div
             key={index}
             onClick={() => onActive(model)}
-            className={`flex p-2 rounded-xl items-center gap-4 mr-4 hover:bg-neutral-900 transition  hover:ease-out ${
+            className={`flex p-2 rounded-xl items-center gap-4 mr-4 select-none hover:bg-neutral-900 active:bg-black active:bg-opacity-70 transition  hover:ease-out ${
               model.active && "bg-hover"
             }`}>
             <img
               src={model.image_url}
               alt={model.mode_id}
-              className="w-[60px] h-[60px] object-cover rounded-xl"
+              className="w-[60px] select-none h-[60px] object-cover rounded-xl"
             />
             <h3>{model.name}</h3>
           </div>
