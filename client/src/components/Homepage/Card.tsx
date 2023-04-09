@@ -3,12 +3,13 @@ import { Post } from "../../types/post";
 
 type CardProps = {
   post: Post;
-  className?: string; 
+  className?: string;
 };
 
 const Card = ({ post, className='' }: CardProps) => {
   return (
-    <div className={` rounded-lg bg-hover  shadow-sm overflow-hidden ${className}`}>
+    <div
+      className={`fadeIn rounded-lg bg-hover  shadow-sm overflow-hidden ${className}`}>
       <img
         alt="Developer"
         src={post.image}
