@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from './useRedux';
 import { useNavigate } from 'react-router';
 import Swal from "sweetalert2";
 import { getRandomPrompt } from "../utils";
-import { onSetId, onSetImage, onSetModel, onSetNegativePrompt, onSetNegativePromptBtn, onSetPrompt } from "../store/generator/genratorSlice";
+import { onSetId, onSetImage, onSetModel, onSetNegativePrompt, onSetNegativePromptBtn, onSetPrompt, onSetSize } from "../store/generator/genratorSlice";
 
 export const useGenerator = () => {
     const { _id } = useAppSelector(state => state.auth)
@@ -32,6 +32,10 @@ export const useGenerator = () => {
         const nevRandomPrompt = getRandomPrompt(prompt, true);
         dispatch(onSetNegativePromptBtn(nevRandomPrompt))
     };
+
+    const handleSize = (aspect: string)=>{
+        dispatch(onSetSize(aspect))
+    }
 
     const handleModel = (model_id: string) => {
         setModels(models.map(model => {
@@ -175,7 +179,8 @@ export const useGenerator = () => {
         handleSubmit,
         createPost,
         handleModel,
-        removerModel
+        removerModel,
+        handleSize
     };
 };
 

@@ -10,7 +10,6 @@ export const GeneratorProvider: FC<providerProps> = ({children})=>{
 
     const {
         loading,
-        form,
         models,
         handleChange,
         handleSurpriseMe,
@@ -19,12 +18,12 @@ export const GeneratorProvider: FC<providerProps> = ({children})=>{
         createPost,
         handleModel,
         removerModel,
+        handleSize
       } = useGenerator();
 
     return (
         <GeneratorContext.Provider value={{
             loading,
-            form,
             models,
             handleChange,
             handleSurpriseMe,
@@ -33,6 +32,7 @@ export const GeneratorProvider: FC<providerProps> = ({children})=>{
             createPost,
             handleModel,
             removerModel,
+            handleSize
         }}>
             {children}
         </GeneratorContext.Provider>

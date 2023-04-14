@@ -8,20 +8,20 @@ export const DisplayPanel = () => {
   const { loading } = useContext(GeneratorContext);
 
   return (
-    <div className={`pt-4 w-full h-[${height}] flex justify-center`}>
-        {loading ? (
-          <div className="grid place-content-center bg-neutral-800 rounded-lg">
-            <Loader />
-          </div>
-        ) : image ? (
-          <img
-            className="object-cover rounded-lg"
-            src={image}
-            alt={prompt}
-          />
-        ) : (
-          <div className={`rounded-lg bg-newimage bg-emerald-400 w-[${width}] h-[${height}]`}>h</div>
-        )}
+    <div className={`pt-4 flex justify-center`} >
+        {
+          !image? (
+            <div className={`flex justify-center items-center rounded-lg bg-newimage transition-all`} style={{width, height}}>
+              {loading && <Loader/> }
+            </div>
+          ): (
+            <img
+              className="object-cover rounded-lg"
+              src={image}
+              alt={prompt}
+            />
+          )
+        }
     </div>
   );
 };

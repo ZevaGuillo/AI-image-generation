@@ -11,7 +11,7 @@ import { Post } from "../../types/post";
 //     height: '512px'
 // });
 
-type GeneratorState = Omit<Post ,'user'>
+type GeneratorState = Omit<Post, 'user'>
 
 const initialState: GeneratorState = {
     userid: '',
@@ -37,17 +37,36 @@ const gallerySlice = createSlice({
             state.negative_prompt = payload
         },
         onSetNegativePromptBtn: (state, { payload }) => {
-            state.negative_prompt = state.negative_prompt.concat(" | "+payload)
+            state.negative_prompt = state.negative_prompt.concat(" | " + payload)
         },
-        onSetModel: (state, { payload }) => {    
+        onSetModel: (state, { payload }) => {
             state.model = payload
         },
         onSetImage: (state, { payload }) => {
             state.image = payload
         },
+        onSetSize: (state, { payload }) => {
+            switch (payload) {
+                case '1/1':
+                    state.width = '512px'
+                    state.height = '512px'
+                    break;
+
+                case '16/9':
+                    state.width = '910.22px'
+                    state.height = '512px'
+                    break;
+                case '9/16':
+                    state.width = '288px'
+                    state.height = '512px'
+                    break;
+                default:
+                    break;
+            }
+        },
     },
 });
 
-export const {onSetId, onSetPrompt, onSetNegativePrompt, onSetNegativePromptBtn, onSetModel, onSetImage} = gallerySlice.actions;
+export const { onSetId, onSetPrompt, onSetNegativePrompt, onSetNegativePromptBtn, onSetModel, onSetImage, onSetSize } = gallerySlice.actions;
 
 export default gallerySlice.reducer;

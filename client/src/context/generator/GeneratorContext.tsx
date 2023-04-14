@@ -4,7 +4,6 @@ import { Model } from "../../types/model";
 
 interface ContextProps {
   loading: boolean,
-  form: Post,
   models:  Model[],
   handleChange:  (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
   handleSurpriseMe: () => void,
@@ -13,6 +12,7 @@ interface ContextProps {
   createPost: () => Promise<void>,
   handleModel:  (model_id: string) => void,
   removerModel:(model_id: string) => void,
+  handleSize: (aspect: string) => void
 }
 
 export const GeneratorContext = createContext({} as ContextProps);
