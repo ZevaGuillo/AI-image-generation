@@ -4,6 +4,7 @@ import User from "../models/mongo/User";
 import cd from 'cloudinary'
 const cloudinary = cd.v2
 import dotenv from 'dotenv';
+import { blurhashFromURL } from "../helpers/blurhash-from-url";
 dotenv.config();
 
   cloudinary.config({
@@ -25,16 +26,16 @@ export const getPosts = async (req: Request, res: Response) => {
                     .sort({ $natural: -1 })
                     .skip(Number(since))
                     .limit(Number(limit))
-                    .populate('user')
+                    .populate('user', 'username slug profilePic')
         } else {
             posts = await Post.find({ prompt: { $regex: text } })
                     .sort({ $natural: -1 })
                     .skip(Number(since))
                     .limit(Number(limit))
-                    .populate('user')
+                    .populate('user', 'username slug profilePic')
         }
         
-        
+ 
         return res.json({
             posts
         })
@@ -58,12 +59,16 @@ export const createPost = async (req: Request, res: Response) => {
 
         const {secure_url} = await cloudinary.uploader.upload( image )
 
+        // blur load
+        const image_data = await blurhashFromURL(secure_url)
+
         const postDB = new Post({
             model,
             prompt,
             image: secure_url,
             negative_prompt,
-            user: user._id
+            user: user._id,
+            image_data
         });
 
 
