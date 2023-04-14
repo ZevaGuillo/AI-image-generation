@@ -1,15 +1,19 @@
 import { Link } from "react-router-dom";
 import { Post } from "../../types/post";
+import Image from "../Image";
 
 type CardProps = {
   post: Post;
-  className?: string; 
+  className?: string;
 };
 
-const Card = ({ post, className='' }: CardProps) => {
+const Card = ({ post, className = "" }: CardProps) => {
+  // console.log(post);
   return (
-    <div className={` rounded-lg bg-hover  shadow-sm overflow-hidden ${className}`}>
-      <img
+    <div
+      className={` rounded-lg bg-hover  shadow-sm overflow-hidden ${className}`}>
+      <Image
+        image_data={post.image_data}
         alt="Developer"
         src={post.image}
         loading="lazy"
@@ -19,7 +23,9 @@ const Card = ({ post, className='' }: CardProps) => {
       <div className="p-2  flex justify-between gap-1 text-sm ">
         <div>
           <div className="flex gap-2 flex-col">
-            <Link to={`/${post.user?.slug}`} className="group flex-1 flex items-center gap-2">
+            <Link
+              to={`/${post.user?.slug}`}
+              className="group flex-1 flex items-center gap-2">
               <img
                 alt={post.user?.username}
                 src={post.user?.profilePic}
