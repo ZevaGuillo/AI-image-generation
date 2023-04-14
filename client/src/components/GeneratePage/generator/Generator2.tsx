@@ -1,4 +1,5 @@
 import { GeneratorProvider } from "../../../context/generator";
+import { DisplayPanel } from "./DisplayPanel";
 import { SelectModel } from "./SelectModel";
 import { Settings } from "./Settings";
 
@@ -15,7 +16,9 @@ export const Generator2 = () => {
           <div className=" w-full  md:row-span-5 md:col-span-1">
             <Settings />
           </div>
-          <div className=" w-full min-h-[512px] md:col-span-3 md:row-span-4"></div>
+          <div className=" w-full md:col-span-3 md:row-span-4">
+            <DisplayPanel/>
+          </div>
         </div>
       </section>
     </GeneratorProvider>
