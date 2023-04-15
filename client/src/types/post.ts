@@ -6,7 +6,7 @@ export interface Post{
     image: string,
     model: string,
     user?:User,
-    image_data:{
+    image_data?:{
         encoded: string,
         width: number,
         height: number
