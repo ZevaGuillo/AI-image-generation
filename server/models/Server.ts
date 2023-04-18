@@ -11,6 +11,11 @@ import helmet from "helmet";
 import session from "express-session";
 import '../helpers/passport'
 import userRouter from "../routes/userRoute";
+import * as dotenv from 'dotenv';
+dotenv.config();
+
+let clientURL: string = process.env.CLIENT_URL
+
 
 class Server {
     private app: Application;
@@ -70,6 +75,9 @@ class Server {
         this.app.use(`/api/v1${this.paths.post}`, postRouter)
         this.app.use(`/api/v1${this.paths.auth}`, authRouter)
         this.app.use(`/api/v1${this.paths.user}`, userRouter)
+        this.app.get('/', (req, res) => {
+            res.redirect(clientURL);
+        });
     }
 
     listen() {

@@ -1,4 +1,5 @@
 import { model, Schema } from "mongoose";
+import { type } from "os";
 
 
 const PostSchema = new Schema({
@@ -6,6 +7,12 @@ const PostSchema = new Schema({
     prompt: { type: String, required: [true, 'prompt is required'] },
     negative_prompt: { type: String },
     image: { type: String, required: [true, 'image url is required'] },
+    image_data:
+    {
+        encoded: { type: String },
+        width: {type: Number},
+        height: {type: Number}
+    },
     user: {
         type: String,
         ref: 'User'

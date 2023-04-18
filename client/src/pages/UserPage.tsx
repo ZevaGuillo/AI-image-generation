@@ -8,7 +8,7 @@ import { FiLogOut } from "react-icons/fi";
 import { useAppSelector } from "../hooks/useRedux";
 
 const UserPage = () => {
-  const { status } = useAppSelector(state => state.auth);
+  const { status, slug } = useAppSelector(state => state.auth);
   const { username } = useParams();
   const [user, setUser] = useState<User[]>();
   const [loading, setLoading] = useState(false);
@@ -79,7 +79,7 @@ const UserPage = () => {
             <h3 className="mb-1 text-2xl text-center font-bold leading-normal text-gray-300">
               {user[0].username}
             </h3>
-            {status === "authenticated" && (
+            {status === "authenticated" && slug === username && (
               <div
                 className="hover:bg-hover hover:bg-opacity-60 p-2 rounded-full"
                 onClick={handleOnClick}>
