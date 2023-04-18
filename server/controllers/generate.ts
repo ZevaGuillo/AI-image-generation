@@ -2,15 +2,15 @@ import { Request, Response } from "express"
 import { fetchApi, fetchApiWithoutModel } from "../helpers/fetchAPi";
 
 export const generateImage = async (req: Request, res: Response) => {
-    const { prompt, negative_prompt, model } = req.body;
+    const { prompt, negative_prompt, model, width, height } = req.body;
 
     try {
         let data;
         if(model===''){
-            data = await fetchApiWithoutModel(prompt, negative_prompt)
+            data = await fetchApiWithoutModel(prompt, negative_prompt, width, height)
         }else{
 
-            data = await fetchApi(prompt, negative_prompt, model)
+            data = await fetchApi(prompt, negative_prompt, model, width, height)
         }
 
         console.log(data);
