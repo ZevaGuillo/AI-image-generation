@@ -62,7 +62,7 @@ const UserPage = () => {
       className="pt-16 bg-bgColor min-h-[100vh]"
       style={{
         backgroundImage:
-          "url(https://cdna.artstation.com/p/assets/images/images/000/215/866/large/anton-fadeev-bloodmoon-ruins2-1-800-logo.jpg?1443930004)",
+          "url(https://res.cloudinary.com/dzx6dg1ws/image/upload/v1681429585/anton-fadeev-bloodmoon-ruins2-1-800-logo_ocriyh.jpg)",
       }}>
       <div className="h-full flex flex-col w-full group break-words ">
         <div className="py-6 bg-bgColor bg-opacity-80 backdrop-blur-xl drop-shadow-xl">

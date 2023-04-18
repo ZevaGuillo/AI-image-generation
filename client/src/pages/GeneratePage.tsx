@@ -1,5 +1,6 @@
-import Generator from "../components/GeneratePage/Generator";
+
 import Hero from "../components/GeneratePage/Hero";
+import {Generator} from "../components/GeneratePage/generator/Generator";
 
 const GeneratePage = () => {
   return (

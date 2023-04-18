@@ -1,37 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from 'react';
 import { Model } from "../types/model";
-import { Post } from "../types/post";
 import { modelList } from "../utils/models";
-import { useAppSelector } from './useRedux';
+import { useAppDispatch, useAppSelector } from './useRedux';
 import { useNavigate } from 'react-router';
 import Swal from "sweetalert2";
 import { getRandomPrompt } from "../utils";
+import { onSetId, onSetImage, onSetModel, onSetNegativePrompt, onSetNegativePromptBtn, onSetPrompt, onSetSize } from "../store/generator/genratorSlice";
 
 export const useGenerator = () => {
     const { _id } = useAppSelector(state => state.auth)
+    const { prompt, userid, model, negative_prompt, image, width, height } = useAppSelector(state => state.generator)
+
+    const dispatch = useAppDispatch();
+    
     const navigate = useNavigate();
 
     const [models, setModels] = useState<Model[]>(modelList);
     const [loading, setLoading] = useState(false);
 
-    const [form, setForm] = useState<Post>({
-        userid: _id,
-        prompt: "",
-        negative_prompt: "",
-        image: "",
-        model: "",
-    });
+    useEffect(()=>{
+        dispatch(onSetId(_id))
+    },[])
+
 
     const handleSurpriseMe = () => {
-        const randomPrompt = getRandomPrompt(form.prompt);
-        setForm({ ...form, prompt: randomPrompt });
+        const randomPrompt = getRandomPrompt(prompt);
+        dispatch(onSetPrompt(randomPrompt))
     };
 
     const handleRandomNegativePrompt = () => {
-        const randomPrompt = getRandomPrompt(form.prompt, true);
-
-        setForm((prev) => ({ ...form, negative_prompt: prev.negative_prompt.concat(" | "+randomPrompt) }));
+        const nevRandomPrompt = getRandomPrompt(prompt, true);
+        dispatch(onSetNegativePromptBtn(nevRandomPrompt))
     };
+
+    const handleSize = (aspect: string)=>{
+        dispatch(onSetSize(aspect))
+    }
 
     const handleModel = (model_id: string) => {
         setModels(models.map(model => {
@@ -43,10 +47,9 @@ export const useGenerator = () => {
             return model;
         }))
 
-        setForm({
-            ...form,
-            model: model_id,
-        });
+        console.log(model_id);
+        
+        dispatch(onSetModel(model_id))
     };
 
     const removerModel = (model_id: string) => {
@@ -56,22 +59,22 @@ export const useGenerator = () => {
             }
             return model;
         }));
-        setForm({
-            ...form,
-            model: '',
-        });
+
+        dispatch(onSetModel(''))
     }
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setForm({
-            ...form,
-            [event.target.name]: event.target.value,
-        });
+
+        if(event.target.name === 'prompt'){
+            dispatch(onSetPrompt(event.target.value))
+        }else{
+            dispatch(onSetNegativePrompt(event.target.value))
+        }
     };
 
     const createPost = async () => {
 
-        if (form.prompt && form.prompt.length > 5) {
+        if (prompt && prompt.length > 5) {
             try {
                 setLoading(true);
                 const response = await fetch(`${import.meta.env.VITE_SERVER}/api/v1/post/create`, {
@@ -80,11 +83,11 @@ export const useGenerator = () => {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        userid: form.userid,
-                        model: form.model,
-                        prompt: form.prompt,
-                        negative_prompt: form.negative_prompt,
-                        image: form.image,
+                        userid,
+                        model,
+                        prompt: prompt,
+                        negative_prompt,
+                        image,
                     }),
                 });
                 const data = await response.json();
@@ -116,10 +119,10 @@ export const useGenerator = () => {
         }
     }
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+    const handleSubmit = async () => {
 
-        if (form.prompt && form.prompt.length > 5) {
+
+        if (prompt && prompt.length > 5) {
             try {
                 setLoading(true);
                 //* FETCH
@@ -129,9 +132,11 @@ export const useGenerator = () => {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        prompt: form.prompt,
-                        negative_prompt: form.negative_prompt,
-                        model: form.model,
+                        prompt,
+                        negative_prompt,
+                        model,
+                        width,
+                        height
                     }),
                 });
                 const data = await response.json();
@@ -140,10 +145,8 @@ export const useGenerator = () => {
                     throw new Error('Out of service')
                 }
 
-                setForm({
-                    ...form,
-                    image: data.image,
-                });
+                dispatch(onSetImage(data.image))
+                
             } catch (error) {
                 Swal.fire({
                     title: 'Out of service',
@@ -170,7 +173,7 @@ export const useGenerator = () => {
 
     return {
         loading,
-        form,
+        // form,
         models,
         handleChange,
         handleSurpriseMe,
@@ -178,7 +181,8 @@ export const useGenerator = () => {
         handleSubmit,
         createPost,
         handleModel,
-        removerModel
+        removerModel,
+        handleSize
     };
 };
 

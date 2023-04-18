@@ -25,7 +25,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed z-10 bg-bgColor bg-opacity-70 border-b border-hover backdrop-blur-lg drop-shadow-sm w-full flex justify-between items-center px-2 md:px-32 h-16">
+    <nav className="fixed z-[1001] bg-bgColor bg-opacity-70 border-b border-hover backdrop-blur-lg drop-shadow-sm w-full flex justify-between items-center px-2 md:px-20 h-16">
       <section className="inline-flex">
         <Link to="/">
           <div className="text-gradient text-lg md:text-4xl">PixelAI</div>
