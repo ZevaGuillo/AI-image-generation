@@ -19,7 +19,7 @@ export const Form = () => {
       <form
         className=" overflow-hidden flex flex-col justify-between"
         onSubmit={handleSubmit}>
-        <div className="overflow-auto flex flex-col gap-3">
+        <div className="p-1 overflow-auto flex flex-col gap-3">
           <label
             htmlFor="prompt"
             className="flex items-center gap-4">
