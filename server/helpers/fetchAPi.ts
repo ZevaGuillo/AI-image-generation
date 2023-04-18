@@ -22,8 +22,6 @@ export const fetchApi = async (prompt: string, negative_prompt: string, model: s
     const gen = options(prompt, negative_prompt, width, height) as optionsWithModel
     gen.model_id = model
 
-    console.log(gen);
-    
 
     const response = await fetch('https://stablediffusionapi.com/api/v3/dreambooth', {
         method: 'POST',
