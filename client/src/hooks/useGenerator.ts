@@ -9,7 +9,7 @@ import { onSetId, onSetImage, onSetModel, onSetNegativePrompt, onSetNegativeProm
 
 export const useGenerator = () => {
     const { _id } = useAppSelector(state => state.auth)
-    const { prompt, userid, model, negative_prompt, image } = useAppSelector(state => state.generator)
+    const { prompt, userid, model, negative_prompt, image, width, height } = useAppSelector(state => state.generator)
 
     const dispatch = useAppDispatch();
     
@@ -119,8 +119,8 @@ export const useGenerator = () => {
         }
     }
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+    const handleSubmit = async () => {
+
 
         if (prompt && prompt.length > 5) {
             try {
@@ -132,9 +132,11 @@ export const useGenerator = () => {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        prompt: prompt,
-                        negative_prompt: negative_prompt,
-                        model: model,
+                        prompt,
+                        negative_prompt,
+                        model,
+                        width,
+                        height
                     }),
                 });
                 const data = await response.json();

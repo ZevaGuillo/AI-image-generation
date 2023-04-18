@@ -8,7 +8,7 @@ interface ContextProps {
   handleChange:  (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,
   handleSurpriseMe: () => void,
   handleRandomNegativePrompt: () => void,
-  handleSubmit:  (event: React.FormEvent<HTMLFormElement>) => Promise<void>,
+  handleSubmit:  () => Promise<void>,
   createPost: () => Promise<void>,
   handleModel:  (model_id: string) => void,
   removerModel:(model_id: string) => void,

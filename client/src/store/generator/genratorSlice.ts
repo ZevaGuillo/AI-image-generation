@@ -1,16 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Post } from "../../types/post";
 
-// const [form, setForm] = useState<Post>({
-//     userid: _id,
-//     prompt: "",
-//     negative_prompt: "",
-//     image: "",
-//     model: "",
-//     width: '512px',
-//     height: '512px'
-// });
-
 type GeneratorState = Omit<Post, 'user'>
 
 const initialState: GeneratorState = {
@@ -19,8 +9,8 @@ const initialState: GeneratorState = {
     negative_prompt: "",
     image: "",
     model: "",
-    width: '512px',
-    height: '512px'
+    width: '512',
+    height: '512'
 };
 
 const gallerySlice = createSlice({
@@ -48,17 +38,17 @@ const gallerySlice = createSlice({
         onSetSize: (state, { payload }) => {
             switch (payload) {
                 case '1/1':
-                    state.width = '512px'
-                    state.height = '512px'
+                    state.width = '512'
+                    state.height = '512'
                     break;
 
                 case '16/9':
-                    state.width = '910.22px'
-                    state.height = '512px'
+                    state.width = '910.22'
+                    state.height = '512'
                     break;
                 case '9/16':
-                    state.width = '288px'
-                    state.height = '512px'
+                    state.width = '288'
+                    state.height = '512'
                     break;
                 default:
                     break;
