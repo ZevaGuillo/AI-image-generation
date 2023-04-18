@@ -4,7 +4,7 @@ import { SelectModel } from "./SelectModel";
 import { Settings } from "./Settings";
 
 
-export const Generator2 = () => {
+export const Generator = () => {
   
   return (
     <GeneratorProvider>
