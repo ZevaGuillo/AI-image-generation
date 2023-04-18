@@ -43,7 +43,7 @@ const gallerySlice = createSlice({
                     break;
 
                 case '16/9':
-                    state.width = '910.22'
+                    state.width = '960'
                     state.height = '512'
                     break;
                 case '9/16':
