@@ -27,7 +27,6 @@ const UserPage = () => {
 
       if (response.ok) {
         const result = await response.json();
-        console.log(result.user);
         setUser(result.user);
       }
     } catch (error) {
