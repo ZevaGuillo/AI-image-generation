@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^1.9.2",
     "@types/file-saver": "^2.0.5",
     "@types/react-redux": "^7.1.25",
+    "@vercel/analytics": "^1.0.0",
     "file-saver": "^2.0.5",
     "flowbite": "^1.6.4",
     "flowbite-react": "^0.4.2",
