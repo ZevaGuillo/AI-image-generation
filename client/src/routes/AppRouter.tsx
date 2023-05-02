@@ -1,4 +1,3 @@
-import React from "react";
 import { Navigate, Route } from "react-router";
 import { Routes } from "react-router-dom";
 import GeneratePage from "../pages/GeneratePage";
@@ -7,8 +6,6 @@ import { useAppDispatch, useAppSelector } from '../hooks/useRedux';
 import { useEffect } from 'react';
 import { startLoginWithGoogle } from "../store/auth/thunks";
 import UserPage from "../pages/UserPage";
-import PrivacyPolicy from "../pages/PrivacyPolicy";
-import Terms from "../pages/Terms";
 
 const AppRouter = () => {
 
@@ -27,9 +24,6 @@ const AppRouter = () => {
     }
 
     <Route path="/:username" element={<UserPage/>}/>
-
-    <Route path="/privacy-policy" element={<PrivacyPolicy/>}/>
-    <Route path="/terms" element={<Terms/>}/>
 
     <Route path="/*" element={<Navigate to={'/'}/>}/>
 
