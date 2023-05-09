@@ -13,8 +13,6 @@ export const generateImage = async (req: Request, res: Response) => {
             data = await fetchApi(prompt, negative_prompt, model, width, height)
         }
 
-        console.log(data);
-
         if( data.message === 'Server Error' || data.status === 'failed'){
             return res.status(500).json({
                 'message': 'Try without selecting a model'

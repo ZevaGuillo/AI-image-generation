@@ -79,6 +79,7 @@ export const useGenerator = () => {
                 setLoading(true);
                 const response = await fetch(`${import.meta.env.VITE_SERVER}/api/v1/post/create`, {
                     method: "POST",
+                    credentials: 'include',
                     headers: {
                         "Content-Type": "application/json",
                     },
@@ -128,6 +129,7 @@ export const useGenerator = () => {
                 //* FETCH
                 const response = await fetch(`${import.meta.env.VITE_SERVER}/api/v1/generate`, {
                     method: "POST",
+                    credentials: 'include',
                     headers: {
                         "Content-Type": "application/json",
                     },
