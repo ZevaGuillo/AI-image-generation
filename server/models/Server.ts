@@ -54,11 +54,11 @@ class Server {
             saveUninitialized: true,
             proxy: true, 
             name: 'MyCoolWebAppCookieName', 
-            cookie: {
-                secure: true, 
-                httpOnly: true,
-                sameSite: 'none'
-            }
+            // cookie: {
+            //     secure: true, 
+            //     httpOnly: true,
+            //     sameSite: 'none'
+            // }
         }))
         this.app.use(passport.initialize());
         this.app.use(passport.session());

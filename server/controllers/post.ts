@@ -7,11 +7,11 @@ import dotenv from 'dotenv';
 import { blurhashFromURL } from "../helpers/blurhash-from-url";
 dotenv.config();
 
-  cloudinary.config({
+cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET,
-  });
+});
 
 export const getPosts = async (req: Request, res: Response) => {
     const { limit = 10, since = 0, text = "", model = "" } = req.query;
@@ -19,23 +19,22 @@ export const getPosts = async (req: Request, res: Response) => {
     let posts;
 
     try {
-        
-        
+
+
         if (model) {
             posts = await Post.find({ prompt: { $regex: text }, model: model })
-                    .sort({ $natural: -1 })
-                    .skip(Number(since))
-                    .limit(Number(limit))
-                    .populate('user', 'username slug profilePic')
+                .sort({ $natural: -1 })
+                .skip(Number(since))
+                .limit(Number(limit))
+                .populate('user', 'username slug profilePic')
         } else {
             posts = await Post.find({ prompt: { $regex: text } })
-                    .sort({ $natural: -1 })
-                    .skip(Number(since))
-                    .limit(Number(limit))
-                    .populate('user', 'username slug profilePic')
+                .sort({ $natural: -1 })
+                .skip(Number(since))
+                .limit(Number(limit))
+                .populate('user', 'username slug profilePic')
         }
-        
- 
+
         return res.json({
             posts
         })
@@ -57,7 +56,7 @@ export const createPost = async (req: Request, res: Response) => {
     try {
         const user = await User.findById(userid);
 
-        const {secure_url} = await cloudinary.uploader.upload( image )
+        const { secure_url } = await cloudinary.uploader.upload(image)
 
         // blur load
         const image_data = await blurhashFromURL(secure_url)

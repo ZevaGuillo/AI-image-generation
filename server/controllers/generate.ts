@@ -1,8 +1,12 @@
 import { Request, Response } from "express"
 import { fetchApi, fetchApiWithoutModel } from "../helpers/fetchAPi";
+import User from "../models/mongo/User";
 
 export const generateImage = async (req: Request, res: Response) => {
     const { prompt, negative_prompt, model, width, height } = req.body;
+
+    const userId = req.user['_id'];
+    const user = await User.findById(userId);
 
     try {
         let data;
@@ -33,6 +37,8 @@ export const generateImage = async (req: Request, res: Response) => {
                     })
                 })
             
+                user.credits -= 1;
+                await user.save();
                 data = await response.json();
                 return res.status(200).json({
                     'image': data.output[0]
@@ -46,6 +52,9 @@ export const generateImage = async (req: Request, res: Response) => {
                 'message': 'Fuera de servicio'
             })
         }else{
+            user.credits -= 1;
+            await user.save();
+
             return res.status(200).json({
                 'image': data.output[0]
             })

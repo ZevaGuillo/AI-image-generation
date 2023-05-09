@@ -24,7 +24,14 @@ const UserSchema = new Schema({
     posts: [{
         type: Schema.Types.ObjectId,
         ref: 'Post'
-    }]
+    }],
+    credits: {
+        type: Number,
+        required: true,
+        default: 10
+    }
 })
+
+
 
 export default model('User', UserSchema)
