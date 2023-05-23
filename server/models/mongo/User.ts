@@ -29,7 +29,13 @@ const UserSchema = new Schema({
         type: Number,
         required: true,
         default: 10
-    }
+    },
+    history: [{
+        model: { type: String, },
+        prompt: { type: String, required: [true, 'prompt is required'] },
+        negative_prompt: { type: String },
+        image: { type: String, required: [true, 'image url is required'] },
+    }]
 })
 
 

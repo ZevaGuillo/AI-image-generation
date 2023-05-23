@@ -23,6 +23,8 @@ export const generateImage = async (req: Request, res: Response) => {
             })
         }
 
+        // REFACTOR---
+
         if (data.status === 'processing') {
             console.log('prrroocceessisingg');
             
@@ -37,9 +39,10 @@ export const generateImage = async (req: Request, res: Response) => {
                     })
                 })
             
-                user.credits -= 1;
-                await user.save();
                 data = await response.json();
+                user.credits -= 1;
+                user.history.push({prompt, negative_prompt, model, image: data.output[0]})
+                await user.save();
                 return res.status(200).json({
                     'image': data.output[0]
                 })
@@ -53,6 +56,7 @@ export const generateImage = async (req: Request, res: Response) => {
             })
         }else{
             user.credits -= 1;
+            user.history.push({prompt, negative_prompt, model, image: data.output[0]})
             await user.save();
 
             return res.status(200).json({
