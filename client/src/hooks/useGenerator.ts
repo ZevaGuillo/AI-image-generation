@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router';
 import Swal from "sweetalert2";
 import { getRandomPrompt } from "../utils";
 import { onSetId, onSetImage, onSetModel, onSetNegativePrompt, onSetNegativePromptBtn, onSetPrompt, onSetSize } from "../store/generator/genratorSlice";
+import { refetchCredits } from '../store/auth/thunks';
 
 export const useGenerator = () => {
     const { _id } = useAppSelector(state => state.auth)
@@ -121,7 +122,7 @@ export const useGenerator = () => {
     }
 
     const handleSubmit = async () => {
-
+        if(image) dispatch(onSetImage(''))
 
         if (prompt && prompt.length > 5) {
             try {
@@ -143,15 +144,15 @@ export const useGenerator = () => {
                 });
                 const data = await response.json();
 
-                if (data.message || data.messege) {
-                    throw new Error('Out of service')
+                if (data.message) {
+                    throw new Error(data.message)
                 }
 
                 dispatch(onSetImage(data.image))
                 
-            } catch (error) {
+            } catch (error: any) {
                 Swal.fire({
-                    title: 'Out of service',
+                    title: error.message || 'Out of service',
                     text: 'Try again later',
                     icon: 'error',
                     focusConfirm: false,
@@ -159,6 +160,7 @@ export const useGenerator = () => {
                 })
             } finally {
                 setLoading(false);
+                dispatch(refetchCredits())
             }
         } else {
             // alert("llenar el campo");

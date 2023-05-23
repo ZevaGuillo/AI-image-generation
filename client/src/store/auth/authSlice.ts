@@ -8,7 +8,8 @@ const initialState: User = {
   slug: '',
   email: '',
   profilePic: '',
-  posts: []
+  posts: [],
+  credits: 0
 }
 
 const authSlice = createSlice({
@@ -22,6 +23,7 @@ const authSlice = createSlice({
       state.slug = payload.slug
       state.email = payload.email
       state.profilePic = payload.profilePic
+      state.credits = payload.credits
     },
     logout: (state) => {
       state.status = 'not-authenticated';
@@ -33,10 +35,13 @@ const authSlice = createSlice({
     },
     checkingCredentials: (state) => {
       state.status = 'checking';
+    },
+    verifyCredits: (state, {payload}) => {
+      state.credits= payload.credits
     }
   }
 });
 
-export const { login, logout, checkingCredentials } = authSlice.actions
+export const { login, logout, checkingCredentials, verifyCredits } = authSlice.actions
 
 export default authSlice.reducer

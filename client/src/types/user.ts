@@ -7,5 +7,6 @@ export interface User {
     slug: string,
     email: string,
     profilePic: string,
-    posts: Post[]
+    posts: Post[],
+    credits: number
 }
