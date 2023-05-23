@@ -9,7 +9,7 @@ const initialState: User = {
   email: '',
   profilePic: '',
   posts: [],
-  credits: 0
+  credits: 0,
 }
 
 const authSlice = createSlice({

@@ -3,6 +3,7 @@ import User from "../models/mongo/User";
 
 export const getUser = async (req: Request, res: Response) => {
     const { slug } = req.params;
+    
     try {
         const user = await User.find({ slug }).populate('posts')
         res.json({
@@ -17,6 +18,7 @@ export const getUser = async (req: Request, res: Response) => {
 
 export const getHistory = async (req: Request, res: Response) => {
     const userId = req.user['_id'];
+    
     try {
         const user = await User.findById(userId);
         return res.status(200).json(user.history)
