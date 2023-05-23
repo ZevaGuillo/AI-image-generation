@@ -5,8 +5,9 @@ export const getUser = async (req: Request, res: Response) => {
     const { slug } = req.params;
     
     try {
-        const user = await User.find({ slug }).populate('posts')
-        res.json({
+        const user = await User.find({ slug }).select('-history').populate('posts')
+        
+        return res.json({
             user
         })
 
