@@ -7,5 +7,14 @@ export interface User {
     slug: string,
     email: string,
     profilePic: string,
-    posts: Post[]
+    posts: Post[],
+    credits: number,
+}
+
+export type History = {
+    _id: string,
+    prompt: string,
+    negative_prompt: string,
+    image: string,
+    model: string,
 }

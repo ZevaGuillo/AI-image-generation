@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Post } from "../../types/post";
 import Image from "../Image";
+import { History } from "../../types/user";
 
 type CardProps = {
   post: Post;
@@ -48,6 +49,20 @@ const Card = ({ post, className = "" }: CardProps) => {
           </p> */}
         </div>
       </div>
+    </div>
+  );
+};
+
+export const HistoryCard = ({ history, className }: { history: History, className?:string }) => {
+  return (
+    <div
+      className={` rounded-lg bg-hover  shadow-sm overflow-hidden ${className}`}>
+      <Image
+        alt="Developer"
+        src={history.image}
+        loading="lazy"
+        className="w-full object-cover scale-100 transition-all group-hover:ease-in-out"
+      />
     </div>
   );
 };

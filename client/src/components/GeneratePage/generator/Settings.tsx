@@ -1,12 +1,13 @@
 import { GeneratorContext } from "../../../context/generator";
 import { useAppSelector } from "../../../hooks/useRedux";
 import { Form } from "./Form";
-import { useContext } from "react";
+import { useContext, useState } from 'react';
 import { RxPaperPlane } from "react-icons/rx";
 export const Settings = () => {
   const { handleSubmit, loading, handleSize, createPost } =
     useContext(GeneratorContext);
   const { model, image } = useAppSelector(state => state.generator);
+  const [loadingPost, setLoadingPost] = useState(false);
 
   return (
     <>
@@ -56,8 +57,11 @@ export const Settings = () => {
       <div className="flex justify-end w-full">
         <button
           type="button"
-          onClick={createPost}
-          disabled={!image}
+          onClick={()=>{
+            setLoadingPost(true);
+            createPost()
+          }}
+          disabled={!image || loadingPost}
           className=" mt-4 disabled:opacity-25 rounded-full gradient p-[2px] hover:text-white focus:outline-none focus:ring active:text-opacity-75">
           <span
             aria-hidden="true"
