@@ -8,5 +8,13 @@ export interface User {
     email: string,
     profilePic: string,
     posts: Post[],
-    credits: number
+    credits: number,
+}
+
+export type History = {
+    _id: string,
+    prompt: string,
+    negative_prompt: string,
+    image: string,
+    model: string,
 }
