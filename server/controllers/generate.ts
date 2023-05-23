@@ -49,7 +49,7 @@ export const generateImage = async (req: Request, res: Response) => {
 
         }else if(data.status === 'error'){
             return res.status(500).json({
-                'message': 'Fuera de servicio'
+                'message': 'Out of service'
             })
         }else{
             user.credits -= 1;
@@ -61,6 +61,18 @@ export const generateImage = async (req: Request, res: Response) => {
         }
 
         
+    } catch (error) {
+        res.status(500).send('Something went wrong')
+    }
+}
+
+export const verifyCredits = async (req: Request, res: Response)=>{
+    const userId = req.user['_id'];
+    try {
+        const user = await User.findById(userId);
+        return res.status(200).json({
+            'credits': user.credits
+        })
     } catch (error) {
         res.status(500).send('Something went wrong')
     }

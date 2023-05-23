@@ -9,11 +9,11 @@ export const checkCredits = async (req: Request, res: Response, next) => {
     const user = await User.findById(userId);
   
     if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+      return res.status(404).json({ message: 'User not found' });
     }
   
     if (user.credits < 1) {
-      return res.status(400).json({ error: 'Insufficient credits' });
+      return res.status(400).json({ message: 'Insufficient credits' });
     }
   
     req.user = user;
