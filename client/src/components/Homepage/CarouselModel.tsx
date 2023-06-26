@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react';
 import { Model } from "../../types/model";
-import { modelList } from "../../utils/models";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -58,7 +56,7 @@ const CarouselModel = ({models,handleModel, removerModel, title, className}:Caro
             <img
               src={model.image_url}
               alt={model.mode_id}
-              className="w-[60px] select-none h-[60px] object-cover rounded-xl"
+              className="min-w-[60px] w-[60px] select-none h-[60px] object-cover rounded-xl"
             />
             <h3>{model.name}</h3>
           </div>
